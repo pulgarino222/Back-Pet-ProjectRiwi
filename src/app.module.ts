@@ -13,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
       port: parseInt(process.env.DB_PORT, 10), // toma el valor del puerto para la base de datos desde el entorno, lo convierte en un número entero y lo asigna a la propiedad port.
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true, // No recomendado en producción, pero útil en desarrollo
     }),
