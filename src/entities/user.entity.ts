@@ -12,7 +12,7 @@ export class User {
   @IsString()
   entityName: string;
 
-  @Column()
+  @Column({unique:true})
   @IsEmail()
   email: string;
 
