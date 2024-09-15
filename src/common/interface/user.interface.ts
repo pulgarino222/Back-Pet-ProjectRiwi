@@ -1,20 +1,19 @@
 import { User } from "src/entities/user.entity";
-import { CreateUserDto,GetUserByIdDto, UpdateUserDto } from "../dto/dto.barrel";
-
-
+import { CreateUserDto,GetUserByIdDto, UpdateUserDto, GetUserByEmailDto  } from "../dto/dto.barrel";
 
 
 export interface UserInterface {
   newUserInterface(entity: CreateUserDto): Promise <User>
 
-  getAllUsersInterface():Promise<User>
+  getAllUsersInterface():Promise<User[]>
 
-  getByIdUsers(id:GetUserByIdDto):Promise<User>
+  getByIdUsersInterface(id:GetUserByIdDto):Promise<User>
 
-  updateUsersDto(newData:UpdateUserDto):Promise<User>
+  updateUsersInterface(newData:UpdateUserDto, id:GetUserByIdDto):Promise<User>
 
+  deleteUserByIdInterface(idToDelete:GetUserByIdDto):Promise<User>
 
-
+  findByEmail(email:GetUserByEmailDto):Promise<User>
   }
 
   

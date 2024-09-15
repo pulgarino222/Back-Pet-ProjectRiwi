@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from './modules/config.module'; // Asegúrate que esta ruta sea correcta
 import { ConfigService } from '@nestjs/config';
 import { UsersModule } from './modules/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { UsersModule } from './modules/users.module';
         synchronize: configService.get<boolean>('databaseEnvironments.synchronize'),
       }),
     }),
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   // otros metadatos del módulo
 })
