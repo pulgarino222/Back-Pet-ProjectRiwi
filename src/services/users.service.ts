@@ -1,25 +1,23 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from '../common/dto/create-user.dto';
 import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
-
-
-
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
-    
-    constructor (@Inject(User) private userRepository:Repository<User>){}
-    createUser(user:CreateUserDto):Promise<User>{
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,  // Inyección del repositorio
+  ) {}
 
-        try {
-            const newUser=this.userRepository.create(user)
-            return this.userRepository.save(newUser)   
-        } catch (error) {
-            console.error(error)
-        }
-        
-
+  async createUser(user: CreateUserDto): Promise<User> {
+    try {
+      const newUser = this.userRepository.create(user);
+      return await this.userRepository.save(newUser);
+    } catch (error) {
+      console.error('Error al crear usuario:', error);
+      throw new Error('No se pudo crear el usuario');
     }
-
+  }
 }

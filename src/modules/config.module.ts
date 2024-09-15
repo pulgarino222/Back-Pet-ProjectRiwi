@@ -8,6 +8,7 @@ import {ConfigDataBase,jwtConfig } from '../config/barrelconfig'
     NestConfigModule.forRoot({
       load: [ConfigDataBase,jwtConfig],
       isGlobal: true, // Si deseas que la configuración esté disponible en toda la aplicación
+      
     }),
 
     
