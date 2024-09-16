@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
-import { CreateUserDto } from '../common/dto/create-user.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserInterface } from 'src/common/interface/user.interface';
-import { GetUserByIdDto } from 'src/common/dto/get-by-id-user.dto';
-import { UpdateUserDto } from 'src/common/dto/update-user.dto';
-import { GetUserByEmailDto } from 'src/common/dto/fin-by-email.dto';
+import { GetUserByIdDto } from 'src/dto/get-by-id-user.dto';
+import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { GetUserByEmailDto } from 'src/dto/fin-by-email.dto';
 import { hash } from 'bcrypt';
 
 @Injectable()

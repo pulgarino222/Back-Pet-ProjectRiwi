@@ -1,25 +1,28 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger';
+import { config,configCors } from './config/barrelconfig';
+
+const PORT = process.env.PORT || 3001;
 
 async function bootstrap() {
+  // Crear la instancia de la aplicación
   const app = await NestFactory.create(AppModule);
 
+  // Configurar CORS
+  app.enableCors(configCors());
+
   // Configurar Swagger
-  const config = new DocumentBuilder()
-    .setTitle('API de mascotas')
-    .setDescription('Documentación de la API de mascotas todos los enpoints tienen ejemplos de rutas')
-    .setVersion('1.0')
-    .addTag('Auth')
-    .addTag('Users') // Este tag debe coincidir con los que agregas en tus controladores
-    .addBearerAuth() // Para manejar tokens de autenticación si usas JWT
-    .build();
-  
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); // Ruta en la que estará la documentación
-  
-  await app.listen(3000);
+
+  // Iniciar el servidor
+  await app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+    console.log(`API documentation available at http://localhost:${PORT}/api`);
+  });
 }
+
 bootstrap();
 
 
