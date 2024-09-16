@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Put, Delete, Body, Param, NotFoundException, InternalServerErrorException, UseGuards } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
-import { UpdateUserDto } from '../common/dto/update-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from 'src/entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
