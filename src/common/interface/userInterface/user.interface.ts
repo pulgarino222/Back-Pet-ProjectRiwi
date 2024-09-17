@@ -1,5 +1,5 @@
 import { User } from "src/entities/user.entity";
-import { CreateUserDto,GetUserByIdDto, UpdateUserDto, GetUserByEmailDto  } from "../../dto/dto.barrel";
+import { CreateUserDto,GetUserByIdDto, UpdateUserDto, GetUserByEmailDto  } from "../../../dto/userDto/user.dto.barrel";
 
 
 export interface UserInterface {
