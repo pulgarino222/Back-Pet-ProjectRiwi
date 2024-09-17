@@ -1,5 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from 'typeorm';
 import { User } from './user.entity';
+import { PetBreed } from './petBreed.entity';
+import { PetSpecies } from './petSpecies.entity';
+import { PetMedia } from './petMedia.entity';
 
 @Entity()
 export class Pet {
@@ -7,13 +10,13 @@ export class Pet {
   id: string;
 
   @Column()
-  img: string;
-
-  @Column()
   name: string;
 
-  @Column({ nullable: true })
-  breed?: string;
+  @ManyToOne(() => PetBreed, (breed) => breed.pets)
+  breed: PetBreed;
+
+  @ManyToOne(() => PetSpecies, (species) => species.pets)
+  specie: PetSpecies;
 
   @Column()
   age: number;
@@ -34,9 +37,6 @@ export class Pet {
   time_at_the_shelter: string;
 
   @Column()
-  specie: 'perro' | 'gato';
-
-  @Column()
   health_history: string;
 
   @Column('json')
@@ -53,4 +53,8 @@ export class Pet {
 
   @ManyToOne(() => User, (user) => user.pets_id)
   user: User;
+
+  @OneToMany(() => PetMedia, (media) => media.pet)
+  media: PetMedia[];
+  
 }

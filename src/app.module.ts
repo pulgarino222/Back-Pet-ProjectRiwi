@@ -4,6 +4,8 @@ import { ConfigModule } from './modules/config.module'; // Asegúrate que esta r
 import { ConfigService } from '@nestjs/config';
 import { UsersModule } from './modules/users.module';
 import { AuthModule } from './auth/auth.module';
+import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
+import { PetsModule } from './modules/pets.module';
 
 @Module({
   imports: [
@@ -26,7 +28,9 @@ import { AuthModule } from './auth/auth.module';
       }),
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    CloudinaryModule,
+    PetsModule
   ],
   // otros metadatos del módulo
 })
