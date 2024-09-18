@@ -4,7 +4,7 @@ import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserInterface } from '../common/interface/userInterface/interfaces.barrel';
-import { GetUserByEmailDto,UpdateUserDto,GetUserByIdDto } from '../dto/userDto/user.dto.barrel';
+import { GetUserByEmailDto, UpdateUserDto, GetUserByIdDto } from '../dto/userDto/user.dto.barrel';
 import { hash } from 'bcrypt';
 
 @Injectable()
@@ -12,18 +12,19 @@ export class UsersService implements UserInterface {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async newUserInterface(user: CreateUserDto): Promise<User> {
     try {
       const { password } = user;
-      const passwordEncript = await hash(password, 10); // Encriptar la contraseña
-      user = { ...user, password: passwordEncript };
+      const encryptedPassword = await hash(password, 10); // Encrypt the password
+      user = { ...user, password: encryptedPassword };
       const newUser = this.userRepository.create(user);
       return await this.userRepository.save(newUser);
     } catch (error) {
-      console.error('Error al crear usuario:', error);
-      throw new InternalServerErrorException('No se pudo crear el usuario');
+      // Error handling is now managed by the exception filter
+      console.error('Error creating the user:', error);
+      throw new InternalServerErrorException('Unable to create the user');
     }
   }
 
@@ -31,8 +32,9 @@ export class UsersService implements UserInterface {
     try {
       return await this.userRepository.find();
     } catch (error) {
-      console.error('Error al obtener usuarios:', error);
-      throw new InternalServerErrorException('No se pudo obtener los usuarios');
+      // Error handling is now managed by the exception filter
+      console.error('Error fetching users:', error);
+      throw new InternalServerErrorException('Unable to fetch users');
     }
   }
 
@@ -44,13 +46,14 @@ export class UsersService implements UserInterface {
       });
 
       if (!user) {
-        throw new NotFoundException('Usuario no encontrado');
+        throw new NotFoundException('User not found');
       }
 
       return user;
     } catch (error) {
-      console.error('Error al obtener usuario:', error);
-      throw new InternalServerErrorException('No se pudo obtener el usuario');
+      // Error handling is now managed by the exception filter
+      console.error('Error fetching user:', error);
+      throw new InternalServerErrorException('Unable to fetch the user');
     }
   }
 
@@ -59,14 +62,15 @@ export class UsersService implements UserInterface {
       const user = await this.getByIdUsersInterface(idToDelete);
 
       if (user) {
-        await this.userRepository.delete(user.id); // Usar el id del usuario para eliminar
+        await this.userRepository.delete(user.id); // Use the user id to delete
         return user;
       }
 
-      throw new NotFoundException('Usuario no encontrado para eliminar');
+      throw new NotFoundException('User not found to delete');
     } catch (error) {
-      console.error('Error al eliminar usuario:', error);
-      throw new InternalServerErrorException('No se pudo eliminar el usuario');
+      // Error handling is now managed by the exception filter
+      console.error('Error deleting user:', error);
+      throw new InternalServerErrorException('Unable to delete the user');
     }
   }
 
@@ -77,24 +81,26 @@ export class UsersService implements UserInterface {
       const user = await this.getByIdUsersInterface({ id: idForUpdate });
 
       if (!user) {
-        throw new NotFoundException('Usuario no encontrado para actualizar');
+        throw new NotFoundException('User not found to update');
       }
 
-      // Encriptar la nueva contraseña si se proporciona
+      // Encrypt the new password if provided
       if (newData.password) {
         newData.password = await hash(newData.password, 10);
       }
 
-      // Actualizar el usuario
+      // Update the user
       await this.userRepository.update(idForUpdate, newData);
 
-      // Retornar el usuario actualizado
+      // Return the updated user
       return this.userRepository.findOne({ where: { id: idForUpdate } });
     } catch (error) {
-      console.error('Error al actualizar usuario:', error);
-      throw new InternalServerErrorException('No se pudo actualizar el usuario');
+      // Error handling is now managed by the exception filter
+      console.error('Error updating user:', error);
+      throw new InternalServerErrorException('Unable to update the user');
     }
   }
+
   async findByEmail(dto: GetUserByEmailDto): Promise<User> {
     const { email } = dto;
     try {
@@ -102,12 +108,14 @@ export class UsersService implements UserInterface {
         where: { email },
       });
       if (!user) {
-        throw new NotFoundException('Usuario no encontrado');
+        throw new NotFoundException('User not found');
       }
       return user;
     } catch (error) {
-      console.error('Error al buscar usuario por email:', error);
-      throw new InternalServerErrorException('No se pudo encontrar el usuario por email');
+      // Error handling is now managed by the exception filter
+      console.error('Error searching user by email:', error);
+      throw new InternalServerErrorException('Unable to find the user by email');
     }
   }
 }
+

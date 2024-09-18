@@ -11,7 +11,7 @@ import { JwtStrategy } from './jwt-strategy';
   imports: [
     ConfigModule.forRoot({
       load: [jwtConfig],
-      isGlobal: true, // Opcional: si quieres que la configuración esté disponible globalmente
+      isGlobal: true, 
     }),
     UsersModule,
     JwtModule.registerAsync({
