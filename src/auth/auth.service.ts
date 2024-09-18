@@ -17,16 +17,16 @@ export class AuthService {
   }> {
     const user = await this.usersService.findByEmail({ email });
     if (!user) {
-      throw new HttpException('User not found', 404); // Usa throw aquí
+      throw new HttpException('User not found', 404); // Use throw here
     }
 
-    const validationPassword = await compare(pass, user.password); // true o false
-    if (!validationPassword) {
-      throw new UnauthorizedException('Credenciales incorrectas'); // Usa throw aquí
+    const isPasswordValid = await compare(pass, user.password); // true or false
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Incorrect credentials'); // Use throw here
     }
 
     const payload = {
-      id: user.id, 
+      id: user.id,
       email: user.email,
     };
 
@@ -36,4 +36,3 @@ export class AuthService {
     };
   }
 }
-

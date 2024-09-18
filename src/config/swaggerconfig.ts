@@ -1,13 +1,11 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-
-
-// Configurar Swagger
+// Configure Swagger
 export const config = new DocumentBuilder()
-.setTitle('API de mascotas')
-.setDescription('Documentación de la API de mascotas todos los enpoints tienen ejemplos de rutas')
-.setVersion('1.0')
-.addTag('Auth')
-.addTag('Users') // Este tag debe coincidir con los que agregas en tus controladores
-.addBearerAuth() // Para manejar tokens de autenticación si usas JWT
-.build();
+  .setTitle('Pet API')
+  .setDescription('Documentation for the Pet API, all endpoints include route examples')
+  .setVersion('1.0')
+  .addTag('Auth')
+  .addTag('Users') // This tag should match those used in your controllers
+  .addBearerAuth() // To handle authentication tokens if using JWT
+  .build();

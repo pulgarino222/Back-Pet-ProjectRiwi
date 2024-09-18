@@ -1,4 +1,5 @@
-import { IsString, IsEmail, IsNotEmpty, IsOptional, IsEnum } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty, IsNumber} from 'class-validator';
+import { IsDigits } from 'src/common/decorators/decorators-quantity-numbers';
 
 export class CreateUserDto {
   @IsString()
@@ -9,8 +10,23 @@ export class CreateUserDto {
   @IsNotEmpty()
   readonly email: string;
 
+  @IsNumber()
+  @IsNotEmpty()
+  readonly phone: number
+
+  @IsDigits(10,{message:'phone must be a 10 digits of number'})
+  @IsNumber()
+  @IsNotEmpty()
+  readonly whatsapp:number
+
+  @IsString()
+  @IsNotEmpty()
+  readonly adress:string 
+
   @IsString()
   @IsNotEmpty()
   readonly password: string;
+
+
 
 }
