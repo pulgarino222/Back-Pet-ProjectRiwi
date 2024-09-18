@@ -5,47 +5,47 @@ import { User } from 'src/entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 
-@ApiBearerAuth() // Añade soporte para autenticación JWT
-@ApiTags('Users') // Agrupa las rutas bajo "Users" en Swagger
+@ApiBearerAuth() // Adds support for JWT authentication
+@ApiTags('Users') // Groups routes under "Users" in Swagger
 @UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // Ruta para obtener todos los usuarios
+  // Route to get all users
   @Get()
-  @ApiOperation({ summary: 'Obtener todos los usuarios' })
-  @ApiResponse({ status: 200, description: 'Usuarios obtenidos con éxito', type: [User] })
-  @ApiResponse({ status: 500, description: 'Error interno del servidor' })
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiResponse({ status: 200, description: 'Users retrieved successfully', type: [User] })
+  @ApiResponse({ status: 500, description: 'Internal server error' })
   async getAllUsers(): Promise<User[]> {
     try {
       return await this.usersService.getAllUsersInterface();
     } catch (error) {
-      throw new InternalServerErrorException('No se pudo obtener los usuarios');
+      throw new InternalServerErrorException('Unable to retrieve users');
     }
   }
 
-  // Ruta para obtener un usuario por ID
+  // Route to get a user by ID
   @Get(':id')
-  @ApiOperation({ summary: 'Obtener un usuario por ID' })
-  @ApiParam({ name: 'id', description: 'ID del usuario', type: String })
-  @ApiResponse({ status: 200, description: 'Usuario obtenido con éxito', type: User })
-  @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
+  @ApiOperation({ summary: 'Get a user by ID' })
+  @ApiParam({ name: 'id', description: 'User ID', type: String })
+  @ApiResponse({ status: 200, description: 'User retrieved successfully', type: User })
+  @ApiResponse({ status: 404, description: 'User not found' })
   async getUserById(@Param('id') id: string): Promise<User> {
     try {
       return await this.usersService.getByIdUsersInterface({ id });
     } catch (error) {
-      throw new NotFoundException('Usuario no encontrado');
+      throw new NotFoundException('User not found');
     }
   }
 
-  // Ruta para actualizar un usuario por ID
+  // Route to update a user by ID
   @Put(':id')
-  @ApiOperation({ summary: 'Actualizar un usuario por ID' })
-  @ApiParam({ name: 'id', description: 'ID del usuario', type: String })
+  @ApiOperation({ summary: 'Update a user by ID' })
+  @ApiParam({ name: 'id', description: 'User ID', type: String })
   @ApiBody({ type: UpdateUserDto })
-  @ApiResponse({ status: 200, description: 'Usuario actualizado con éxito', type: User })
-  @ApiResponse({ status: 500, description: 'Error al actualizar el usuario' })
+  @ApiResponse({ status: 200, description: 'User updated successfully', type: User })
+  @ApiResponse({ status: 500, description: 'Error updating the user' })
   async updateUser(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -53,21 +53,22 @@ export class UsersController {
     try {
       return await this.usersService.updateUsersInterface(updateUserDto, { id });
     } catch (error) {
-      throw new InternalServerErrorException('No se pudo actualizar el usuario');
+      throw new InternalServerErrorException('Unable to update the user');
     }
   }
 
-  // Ruta para eliminar un usuario por ID
+  // Route to delete a user by ID
   @Delete(':id')
-  @ApiOperation({ summary: 'Eliminar un usuario por ID' })
-  @ApiParam({ name: 'id', description: 'ID del usuario', type: String })
-  @ApiResponse({ status: 200, description: 'Usuario eliminado con éxito', type: User })
-  @ApiResponse({ status: 500, description: 'Error al eliminar el usuario' })
+  @ApiOperation({ summary: 'Delete a user by ID' })
+  @ApiParam({ name: 'id', description: 'User ID', type: String })
+  @ApiResponse({ status: 200, description: 'User deleted successfully', type: User })
+  @ApiResponse({ status: 500, description: 'Error deleting the user' })
   async deleteUser(@Param('id') id: string): Promise<User> {
     try {
       return await this.usersService.deleteUserByIdInterface({ id });
     } catch (error) {
-      throw new InternalServerErrorException('No se pudo eliminar el usuario');
+      throw new InternalServerErrorException('Unable to delete the user');
     }
   }
 }
+

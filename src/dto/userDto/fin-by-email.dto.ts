@@ -1,6 +1,6 @@
 import { IsEmail } from 'class-validator';
 
 export class GetUserByEmailDto {
-  @IsEmail({}, { message: 'El email debe ser una dirección de correo válida' })
+  @IsEmail({}, { message: 'the email no is valid' })
   email: string;
 }

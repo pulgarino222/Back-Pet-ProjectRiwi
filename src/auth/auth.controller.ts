@@ -1,10 +1,10 @@
 import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
-import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger'; // Importar decoradores de Swagger
+import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger'; // Import Swagger decorators
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/services/users.service';
 import { CreateUserDto, LoginAuthDto } from '../dto/userDto/user.dto.barrel';
 
-@ApiTags('Auth') // Grupo de rutas bajo el tag 'Auth'
+@ApiTags('Auth') // Group routes under the 'Auth' tag
 @Controller('auth')
 export class AuthController {
   constructor(
