@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID } from 'class-validator';
 
 export class CreatePetDto {
   @IsNotEmpty()
@@ -6,9 +6,13 @@ export class CreatePetDto {
   name: string;
 
   @IsNotEmpty()
+  @IsUUID()
+  @IsString()
   breedId: string;
 
   @IsNotEmpty()
+  @IsUUID()
+  @IsString()
   specieId: string;
 
   @IsNotEmpty()
@@ -20,7 +24,7 @@ export class CreatePetDto {
   sex: 'macho' | 'hembra';
 
   @IsOptional()
-  size?: {
+  size: {
     current: 'pequeño' | 'mediano' | 'grande';
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
@@ -48,5 +52,7 @@ export class CreatePetDto {
   personality?: string;
 
   @IsNotEmpty()
+  @IsUUID()
+  @IsString()
   userId: string;
 }

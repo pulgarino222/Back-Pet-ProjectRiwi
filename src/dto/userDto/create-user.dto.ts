@@ -14,7 +14,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   readonly phone: number
 
-  @IsDigits(10,{message:'phone must be a 10 digits of number'})
+  @IsDigits(11,{message:'phone must be a 10 digits of number'})
   @IsNumber()
   @IsNotEmpty()
   readonly whatsapp:number
