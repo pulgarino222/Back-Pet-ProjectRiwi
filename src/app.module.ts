@@ -6,6 +6,8 @@ import { UsersModule } from './modules/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
 import { PetsModule } from './modules/pets.module';
+import { APP_FILTER } from '@nestjs/core';
+import { CustomExceptionFilter } from './common/exceptionFilters/http-exception.filter';
 
 @Module({
   imports: [
@@ -32,6 +34,12 @@ import { PetsModule } from './modules/pets.module';
     CloudinaryModule,
     PetsModule
   ],
+
+  providers:[{
+    provide:APP_FILTER,
+    useClass:CustomExceptionFilter
+
+  }]
   // otros metadatos del módulo
 })
 export class AppModule {}

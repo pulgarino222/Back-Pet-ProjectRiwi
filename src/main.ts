@@ -3,11 +3,12 @@ import { AppModule } from './app.module';
 import { SwaggerModule } from '@nestjs/swagger';
 import { config, configCors } from './config/barrelconfig';
 
-const PORT = process.env.PORT || 3001;
 
+const PORT = process.env.PORT || 3001;
 async function bootstrap() {
   // Create the application instance
   const app = await NestFactory.create(AppModule);
+
 
   // Configure CORS
   app.enableCors(configCors());

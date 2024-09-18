@@ -12,7 +12,7 @@ export class UsersService implements UserInterface {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async newUserInterface(user: CreateUserDto): Promise<User> {
     try {
@@ -22,6 +22,7 @@ export class UsersService implements UserInterface {
       const newUser = this.userRepository.create(user);
       return await this.userRepository.save(newUser);
     } catch (error) {
+      // Error handling is now managed by the exception filter
       console.error('Error creating the user:', error);
       throw new InternalServerErrorException('Unable to create the user');
     }
@@ -31,6 +32,7 @@ export class UsersService implements UserInterface {
     try {
       return await this.userRepository.find();
     } catch (error) {
+      // Error handling is now managed by the exception filter
       console.error('Error fetching users:', error);
       throw new InternalServerErrorException('Unable to fetch users');
     }
@@ -49,6 +51,7 @@ export class UsersService implements UserInterface {
 
       return user;
     } catch (error) {
+      // Error handling is now managed by the exception filter
       console.error('Error fetching user:', error);
       throw new InternalServerErrorException('Unable to fetch the user');
     }
@@ -65,6 +68,7 @@ export class UsersService implements UserInterface {
 
       throw new NotFoundException('User not found to delete');
     } catch (error) {
+      // Error handling is now managed by the exception filter
       console.error('Error deleting user:', error);
       throw new InternalServerErrorException('Unable to delete the user');
     }
@@ -91,6 +95,7 @@ export class UsersService implements UserInterface {
       // Return the updated user
       return this.userRepository.findOne({ where: { id: idForUpdate } });
     } catch (error) {
+      // Error handling is now managed by the exception filter
       console.error('Error updating user:', error);
       throw new InternalServerErrorException('Unable to update the user');
     }
@@ -107,6 +112,7 @@ export class UsersService implements UserInterface {
       }
       return user;
     } catch (error) {
+      // Error handling is now managed by the exception filter
       console.error('Error searching user by email:', error);
       throw new InternalServerErrorException('Unable to find the user by email');
     }
