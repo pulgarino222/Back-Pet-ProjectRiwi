@@ -6,6 +6,7 @@ export const config = new DocumentBuilder()
   .setDescription('Documentation for the Pet API, all endpoints include route examples')
   .setVersion('1.0')
   .addTag('Auth')
-  .addTag('Users') // This tag should match those used in your controllers
-  .addBearerAuth() // To handle authentication tokens if using JWT
+  .addTag('Users')
+  .addTag('Pets') // Add the tag for Pets
+  .addBearerAuth()
   .build();

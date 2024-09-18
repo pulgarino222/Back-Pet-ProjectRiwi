@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn,OneToMany, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 import { Pet } from './pet.entity';
 import { Role } from './role.entity';
 import { IsString, IsEmail, IsNumber } from 'class-validator';
@@ -13,7 +13,7 @@ export class User {
   @IsString()
   entityName: string;
 
-  @Column({unique:true})
+  @Column({ unique: true })
   @IsEmail()
   email: string;
 
@@ -27,14 +27,17 @@ export class User {
   @IsString()
   city: string;
 
+  @Column()
   @IsString()
   adress: string;
 
+  @Column()
   @IsNumber()
-  phone:number
+  phone: number
 
+  @Column()
   @IsNumber()
-  whatsapp:number
+  whatsapp: number
 
   @ManyToOne(() => Role, (role) => role.users)
   roles: Role;
