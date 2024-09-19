@@ -7,7 +7,7 @@ import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } 
 
 @ApiBearerAuth() // Adds support for JWT authentication
 @ApiTags('Pets') // Groups routes under "Pets" in Swagger
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('pets')
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}

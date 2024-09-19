@@ -23,8 +23,8 @@ export class CreatePetDto {
   @IsEnum(['macho', 'hembra'])
   readonly sex: 'macho' | 'hembra';
 
-  @IsOptional()
-  readonly size?: {
+  @IsNotEmpty()
+  readonly size: {
     current: 'pequeño' | 'mediano' | 'grande';
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
