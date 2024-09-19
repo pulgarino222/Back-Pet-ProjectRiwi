@@ -4,11 +4,12 @@ import { CreatePetDto, UpdatePetDto, FindBySpeciesEstimatedSizeDto, GetByIdPetDt
 import { Pet } from 'src/entities/pet.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
+import { RolesGuard } from 'src/auth/auth-roles.guard';
 
 @ApiBearerAuth() // Adds support for JWT authentication
 @ApiTags('Pets') // Groups routes under "Pets" in Swagger
-@UseGuards(JwtAuthGuard)
 @Controller('pets')
+@UseGuards(RolesGuard)
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 
