@@ -8,8 +8,8 @@ import { RolesGuard } from 'src/auth/auth-roles.guard';
 
 @ApiBearerAuth() // Adds support for JWT authentication
 @ApiTags('Users') // Groups routes under "Users" in Swagger
-// @UseGuards(RolesGuard)
 @Controller('users')
+@UseGuards(JwtAuthGuard,RolesGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

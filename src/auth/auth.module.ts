@@ -5,8 +5,8 @@ import { UsersModule } from 'src/modules/users.module'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { jwtConfig } from 'src/config/configurationsJwt'
-// import { JwtStrategy } from './jwt-strategy'
 import { JwtStrategyRols } from './jwt-strategy-roles'
+import { JwtStrategy } from './jwt-strategy'
 
 
 
@@ -26,7 +26,7 @@ import { JwtStrategyRols } from './jwt-strategy-roles'
       }),
     }),
   ],
-  providers: [AuthService,JwtStrategyRols],
+  providers: [AuthService,JwtStrategyRols,JwtStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })

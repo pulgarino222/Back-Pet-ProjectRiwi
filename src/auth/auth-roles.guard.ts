@@ -8,13 +8,23 @@ export class RolesGuard extends JwtAuthGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {
     super();
   }
+
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const user: User = request.user; // Aquí obtenemos el usuario del request
+    const user: User = request.user;
+
+    console.log('User in RolesGuard:', user);
+
+    if (!user) {
+      throw new ForbiddenException('User not found');
+    }
+
     const hasRole = () => user.roles.some(role => role.name === 'master'); 
-    if (!user || !hasRole()) {
+    if (!hasRole()) {
       throw new ForbiddenException('You do not have permission to access this resource');
     }
+
     return true;
   }
 }
+

@@ -27,7 +27,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   readonly password: string;
 
-  @IsUUID('all', { each: true }) // Permite un arreglo de UUIDs
-  @IsArray() // Asegúrate de que sea un arreglo
-  readonly roles: string[]; // Esto permanece como un arreglo de cadenas (UUIDs)
+  @IsUUID('all', { each: true }) 
+  @IsArray() 
+  readonly roles: string[]; 
 }

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany,JoinTable} from 'typeorm';
 import { Pet } from './pet.entity';
 import { Role } from './role.entity';
 import { IsString, IsEmail, IsNumber } from 'class-validator';
@@ -37,8 +37,10 @@ export class User {
   @IsNumber()
   whatsapp: number;
 
-  @OneToMany(() => Role, (role) => role.users)
+  @ManyToMany(() => Role, (role) => role.users)
+  @JoinTable() 
   roles: Role[];
+
 
   @OneToMany(() => Pet, (pet) => pet.user)
   pets_id: Pet[];
