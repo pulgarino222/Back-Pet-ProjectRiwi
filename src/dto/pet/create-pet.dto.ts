@@ -3,41 +3,41 @@ import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID } from 'clas
 export class CreatePetDto {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  readonly name: string;
 
   @IsNotEmpty()
   @IsUUID()
   @IsString()
-  breedId: string;
+  readonly breedId: string;
 
   @IsNotEmpty()
   @IsUUID()
   @IsString()
-  specieId: string;
+  readonly specieId: string;
 
   @IsNotEmpty()
   @IsNumber()
-  age: number;
+  readonly age: number;
 
   @IsNotEmpty()
   @IsEnum(['macho', 'hembra'])
-  sex: 'macho' | 'hembra';
+  readonly sex: 'macho' | 'hembra';
 
   @IsOptional()
-  size: {
+  readonly size?: {
     current: 'pequeño' | 'mediano' | 'grande';
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
 
   @IsNotEmpty()
   @IsNumber()
-  weight: number;
+  readonly weight: number;
 
   @IsNotEmpty()
-  time_at_the_shelter: string;
+  readonly time_at_the_shelter: string;
 
   @IsNotEmpty()
-  health_history: string;
+  readonly health_history: string;
 
   @IsNotEmpty()
   health: {
@@ -49,10 +49,10 @@ export class CreatePetDto {
   };
 
   @IsOptional()
-  personality?: string;
+  readonly personality?: string;
 
   @IsNotEmpty()
   @IsUUID()
   @IsString()
-  userId: string;
+  readonly userId: string;
 }
