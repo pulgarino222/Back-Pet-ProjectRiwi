@@ -17,21 +17,25 @@ export class AuthService {
   }> {
     const user = await this.usersService.findByEmail({ email });
     if (!user) {
-      throw new HttpException('User not found', 404); // Use throw here
+      throw new HttpException('User not found', 404);
     }
-
-    const isPasswordValid = await compare(pass, user.password); // true or false
+  
+    const isPasswordValid = await compare(pass, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Incorrect credentials'); // Use throw here
+      throw new UnauthorizedException('Incorrect credentials');
     }
-
+  
+    // Cargar el usuario completo, incluyendo roles
+    const fullUser = await this.usersService.getByIdUsersInterface({ id: user.id });
+  
     const payload = {
-      id: user.id,
-      email: user.email,
+      id: fullUser.id,
+      email: fullUser.email,
+      roles: fullUser.roles.map(role => role.id), // Aquí puedes ajustar para incluir solo el ID o todo el objeto
     };
-
+  
     return {
-      data: user,
+      data: fullUser,
       access_token: await this.jwtService.signAsync(payload),
     };
   }
