@@ -17,22 +17,32 @@ export class AuthService {
   }> {
     const user = await this.usersService.findByEmail({ email });
     if (!user) {
-      throw new HttpException('User not found', 404); // Use throw here
+      throw new HttpException('User not found', 404);
     }
 
-    const isPasswordValid = await compare(pass, user.password); // true or false
+    const isPasswordValid = await compare(pass, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Incorrect credentials'); // Use throw here
+      throw new UnauthorizedException('Incorrect credentials');
     }
+
+    const fullUser = await this.usersService.getByIdUsersInterface({ id: user.id });
+
+
+    console.log('Full User:', fullUser);
 
     const payload = {
-      id: user.id,
-      email: user.email,
+      id: fullUser.id,
+      email: fullUser.email,
+      roles: fullUser.roles.map(role => ({
+        id: role.id,
+        name: role.name,
+      })), 
     };
 
     return {
-      data: user,
+      data: fullUser,
       access_token: await this.jwtService.signAsync(payload),
     };
   }
 }
+

@@ -4,11 +4,12 @@ import { UpdateUserDto } from '../dto/userDto/update-user.dto';
 import { User } from 'src/entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
+import { RolesGuard } from 'src/auth/auth-roles.guard';
 
 @ApiBearerAuth() // Adds support for JWT authentication
 @ApiTags('Users') // Groups routes under "Users" in Swagger
-@UseGuards(JwtAuthGuard)
 @Controller('users')
+@UseGuards(JwtAuthGuard,RolesGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

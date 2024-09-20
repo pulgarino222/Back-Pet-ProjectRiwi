@@ -5,26 +5,26 @@ export class UpdateUserDto extends CreateUserDto {
 
     @IsString()
     @IsUUID()
-    id: string;
+    readonly id: string;
 
     
     @IsString()
     @IsNotEmpty()
-    entityName: string;
+    readonly entityName: string;
 
     
     @IsEmail()
     @IsNotEmpty()
-    email: string;
+    readonly email: string;
 
     @IsNumber()
     @IsDigits(11,{message:'must be 10 numbers'})
     @IsNotEmpty()
-    whatsapp: number;
+    readonly whatsapp: number;
 
     @IsNumber()
     @IsNotEmpty()
-    phone: number;
+    readonly phone: number;
 
     
     @IsString()
@@ -33,5 +33,5 @@ export class UpdateUserDto extends CreateUserDto {
 
     @IsOptional()
     @IsString()
-    city: string;
+    readonly city: string;
 }

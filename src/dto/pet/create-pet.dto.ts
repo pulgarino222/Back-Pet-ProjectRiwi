@@ -1,22 +1,13 @@
-import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID, IsObject } from 'class-validator';
 
 export class CreatePetDto {
-  @IsNotEmpty()
+  
   @IsString()
+  @IsOptional()
   readonly name: string;
 
-  @IsNotEmpty()
-  @IsUUID()
-  @IsString()
-  readonly breedId: string;
-
-  @IsNotEmpty()
-  @IsUUID()
-  @IsString()
-  readonly specieId: string;
-
-  @IsNotEmpty()
   @IsNumber()
+  @IsNotEmpty()
   readonly age: number;
 
   @IsNotEmpty()
@@ -34,12 +25,15 @@ export class CreatePetDto {
   readonly weight: number;
 
   @IsNotEmpty()
+  @IsString()
   readonly time_at_the_shelter: string;
 
   @IsNotEmpty()
+  @IsString()
   readonly health_history: string;
 
   @IsNotEmpty()
+  @IsObject()
   health: {
     previous_treatments: string;
     dewormed: string;
@@ -48,11 +42,31 @@ export class CreatePetDto {
     vaccines: string;
   };
 
+  
+  @IsString()
   @IsOptional()
   readonly personality?: string;
 
-  @IsNotEmpty()
+ 
   @IsUUID()
   @IsString()
+  @IsNotEmpty()
   readonly userId: string;
+
+
+ 
+  @IsUUID()
+  @IsString()
+  @IsNotEmpty()
+  readonly breedId: string;
+
+
+ 
+  @IsUUID()
+  @IsString()
+  @IsNotEmpty()
+  readonly specieId: string;
+
+
+  image: Express.Multer.File
 }

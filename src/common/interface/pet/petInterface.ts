@@ -1,5 +1,5 @@
 import { Pet } from "src/entities/pet.entity";
-import { CreatePetDto, UpdatePetDto, FindBySpeciesEstimatedSizeDto, GetByIdPetDto } from "../../../dto/pet/pet.dto.barrel";
+import { CreatePetDto, UpdatePetDto, FindBySpeciesDto,FindBySize, GetByIdPetDto } from "../../../dto/pet/pet.dto.barrel";
 
 export interface PetInterface {
   newPetInterface(entity: CreatePetDto): Promise<Pet>;
@@ -12,5 +12,5 @@ export interface PetInterface {
 
   deletePetByIdInterface(id: GetByIdPetDto): Promise<void>;
 
-  findBySpeciesAndEstimatedSize(dto: FindBySpeciesEstimatedSizeDto): Promise<Pet[]>;
+  findBySpeciesAndEstimatedSize(specie:FindBySpeciesDto, size:FindBySize): Promise<Pet[]>;
 }

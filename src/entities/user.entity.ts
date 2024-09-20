@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany,JoinTable} from 'typeorm';
 import { Pet } from './pet.entity';
 import { Role } from './role.entity';
 import { IsString, IsEmail, IsNumber } from 'class-validator';
@@ -21,9 +21,7 @@ export class User {
   @IsString()
   password: string;
 
-  @Column({
-    default: 'medellin'
-  })
+  @Column({ default: 'medellin' })
   @IsString()
   city: string;
 
@@ -31,16 +29,17 @@ export class User {
   @IsString()
   adress: string;
 
-  @Column()
+  @Column({ type: 'bigint' })
   @IsNumber()
-  phone: number
+  phone: number;
 
-  @Column()
+  @Column({ type: 'bigint' })
   @IsNumber()
-  whatsapp: number
+  whatsapp: number;
 
-  @ManyToOne(() => Role, (role) => role.users)
-  roles: Role;
+  @ManyToMany(() => Role, (role) => role.users)
+  @JoinTable() 
+  roles: Role[];
 
 
   @OneToMany(() => Pet, (pet) => pet.user)

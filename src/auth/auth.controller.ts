@@ -1,10 +1,11 @@
-import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
-import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger'; // Import Swagger decorators
+import { Body, Controller, Post, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/services/users.service';
 import { CreateUserDto, LoginAuthDto } from '../dto/userDto/user.dto.barrel';
+import { RolesGuard } from './auth-roles.guard'; // Asegúrate de que la ruta sea correcta
 
-@ApiTags('Auth') // Group routes under the 'Auth' tag
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -16,8 +17,13 @@ export class AuthController {
   @ApiResponse({ status: 400, description: 'Invalid input.' })
   @ApiBody({ type: CreateUserDto })
   @Post('register')
-  registerUser(@Body() newUser: CreateUserDto) {
-    return this.userService.newUserInterface(newUser);
+  async registerUser(@Body() newUser: CreateUserDto) {
+    try {
+      return await this.userService.newUserInterface(newUser);
+    } catch (error) {
+     
+      throw error; 
+    }
   }
 
   @ApiResponse({ status: 200, description: 'Login successful.' })
@@ -25,9 +31,14 @@ export class AuthController {
   @ApiBody({ type: LoginAuthDto })
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signIn: LoginAuthDto) {
-    return this.authService.signIn(signIn.email, signIn.password);
+  async signIn(@Body() signIn: LoginAuthDto) {
+    try {
+      return await this.authService.signIn(signIn.email, signIn.password);
+    } catch (error) {
+      throw error; 
+    }
   }
 }
+
 
 
