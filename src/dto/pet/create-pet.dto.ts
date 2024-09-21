@@ -1,35 +1,24 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID, IsObject } from 'class-validator';
 
 export class CreatePetDto {
+  
   @ApiProperty({ description: 'Nombre de la mascota', example: 'Firulais' })
-  @IsNotEmpty()
   @IsString()
-  name: string;
-
-  @ApiProperty({ description: 'ID de la raza en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
-  @IsNotEmpty()
-  @IsUUID()
-  @IsString()
-  breedId: string;
-
-  @ApiProperty({ description: 'ID de la especie en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
-  @IsNotEmpty()
-  @IsUUID()
-  @IsString()
-  specieId: string;
+  @IsOptional()
+  readonly name?: string;
 
   @ApiProperty({ description: 'Edad de la mascota', example: 3 })
   @IsNotEmpty()
   @IsNumber()
-  age: number;
+  readonly age: number;
 
   @ApiProperty({ description: 'Sexo de la mascota', enum: ['macho', 'hembra'] })
   @IsNotEmpty()
   @IsEnum(['macho', 'hembra'])
-  sex: 'macho' | 'hembra';
+  readonly sex: 'macho' | 'hembra';
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: 'Tamaño de la mascota',
     type: Object,
     properties: {
@@ -37,8 +26,9 @@ export class CreatePetDto {
       estimated: { type: 'string', enum: ['pequeño', 'mediano', 'grande', 'desconocido'] },
     },
   })
-  @IsOptional()
-  size?: {
+  @IsNotEmpty()
+  @IsObject()
+  readonly size: {
     current: 'pequeño' | 'mediano' | 'grande';
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
@@ -46,15 +36,17 @@ export class CreatePetDto {
   @ApiProperty({ description: 'Peso de la mascota', example: 15 })
   @IsNotEmpty()
   @IsNumber()
-  weight: number;
+  readonly weight: number;
 
   @ApiProperty({ description: 'Tiempo en el refugio', example: '2 meses' })
   @IsNotEmpty()
-  time_at_the_shelter: string;
+  @IsString()
+  readonly time_at_the_shelter: string;
 
   @ApiProperty({ description: 'Historial de salud', example: 'Sin antecedentes médicos relevantes' })
   @IsNotEmpty()
-  health_history: string;
+  @IsString()
+  readonly health_history: string;
 
   @ApiProperty({
     description: 'Información sobre la salud',
@@ -68,7 +60,8 @@ export class CreatePetDto {
     },
   })
   @IsNotEmpty()
-  health: {
+  @IsObject()
+  readonly health: {
     previous_treatments: string;
     dewormed: string;
     medical_necessity: string;
@@ -77,12 +70,26 @@ export class CreatePetDto {
   };
 
   @ApiPropertyOptional({ description: 'Personalidad de la mascota', example: 'Juguetón' })
+  @IsString()
   @IsOptional()
-  personality?: string;
+  readonly personality?: string;
 
   @ApiProperty({ description: 'ID del usuario en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
-  @IsNotEmpty()
   @IsUUID()
-  @IsString()
-  userId: string;
+  @IsNotEmpty()
+  readonly userId: string;
+
+  @ApiProperty({ description: 'ID de la raza en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
+  @IsUUID()
+  @IsNotEmpty()
+  readonly breedId: string;
+
+  @ApiProperty({ description: 'ID de la especie en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
+  @IsUUID()
+  @IsNotEmpty()
+  readonly specieId: string;
+
+  @ApiPropertyOptional({ description: 'Imagen de la mascota' })
+  @IsOptional()
+  image?: Express.Multer.File;
 }

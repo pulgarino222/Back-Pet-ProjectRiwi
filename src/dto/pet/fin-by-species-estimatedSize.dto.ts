@@ -1,17 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, IsEnum } from 'class-validator';
 
-export class FindBySpeciesEstimatedSizeDto {
-  @ApiProperty({ description: 'ID de la especie', example: '123e4567-e89b-12d3-a456-426614174000' })
+export class FindBySpeciesDto {
   @IsNotEmpty()
   @IsString()
-  specieId: string;
+  specieId: string; 
+}
 
-  @ApiProperty({ 
-    description: 'Tamaño estimado de la mascota', 
-    enum: ['pequeño', 'mediano', 'grande', 'desconocido'] 
-  })
+
+export class FindBySize{
   @IsNotEmpty()
   @IsEnum(['pequeño', 'mediano', 'grande', 'desconocido'])
   estimatedSize: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
+  
 }

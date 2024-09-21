@@ -12,11 +12,7 @@ export class Pet {
   @Column()
   name: string;
 
-  @ManyToOne(() => PetBreed, (breed) => breed.pets)
-  breed: PetBreed;
 
-  @ManyToOne(() => PetSpecies, (species) => species.pets)
-  specie: PetSpecies;
 
   @Column()
   age: number;
@@ -56,5 +52,11 @@ export class Pet {
 
   @OneToMany(() => PetMedia, (media) => media.pet)
   media: PetMedia[];
+
+  @ManyToOne(() => PetSpecies, (species) => species.pets)
+  specie: PetSpecies;
+
+  @ManyToOne(() => PetBreed, (breed) => breed.pets)
+  breed: PetBreed;
   
 }

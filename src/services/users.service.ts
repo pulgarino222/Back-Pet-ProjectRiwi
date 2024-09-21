@@ -7,6 +7,7 @@ import { UserInterface } from '../common/interface/userInterface/interfaces.barr
 import { GetUserByEmailDto, UpdateUserDto, GetUserByIdDto } from '../dto/userDto/user.barrel';
 import { hash } from 'bcrypt';
 import { Role } from 'src/entities/role.entity';
+import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service';
 
 @Injectable()
 export class UsersService implements UserInterface {
