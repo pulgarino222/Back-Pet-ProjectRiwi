@@ -1,11 +1,15 @@
 import { IsNotEmpty, IsString, IsEnum } from 'class-validator';
 
-export class FindBySpeciesEstimatedSizeDto {
+export class FindBySpeciesDto {
   @IsNotEmpty()
   @IsString()
-  specieId: string;
+  specieId: string; 
+}
 
+
+export class FindBySize{
   @IsNotEmpty()
   @IsEnum(['pequeño', 'mediano', 'grande', 'desconocido'])
   estimatedSize: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
+  
 }

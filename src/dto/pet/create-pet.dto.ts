@@ -1,45 +1,39 @@
-import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID, IsObject } from 'class-validator';
 
 export class CreatePetDto {
-  @IsNotEmpty()
+  
   @IsString()
-  name: string;
+  @IsOptional()
+  readonly name: string;
 
-  @IsNotEmpty()
-  @IsUUID()
-  @IsString()
-  breedId: string;
-
-  @IsNotEmpty()
-  @IsUUID()
-  @IsString()
-  specieId: string;
-
-  @IsNotEmpty()
   @IsNumber()
-  age: number;
+  @IsNotEmpty()
+  readonly age: number;
 
   @IsNotEmpty()
   @IsEnum(['macho', 'hembra'])
-  sex: 'macho' | 'hembra';
+  readonly sex: 'macho' | 'hembra';
 
-  @IsOptional()
-  size: {
+  @IsNotEmpty()
+  readonly size: {
     current: 'pequeño' | 'mediano' | 'grande';
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
 
   @IsNotEmpty()
   @IsNumber()
-  weight: number;
+  readonly weight: number;
 
   @IsNotEmpty()
-  time_at_the_shelter: string;
+  @IsString()
+  readonly time_at_the_shelter: string;
 
   @IsNotEmpty()
-  health_history: string;
+  @IsString()
+  readonly health_history: string;
 
   @IsNotEmpty()
+  @IsObject()
   health: {
     previous_treatments: string;
     dewormed: string;
@@ -48,11 +42,31 @@ export class CreatePetDto {
     vaccines: string;
   };
 
+  
+  @IsString()
   @IsOptional()
-  personality?: string;
+  readonly personality?: string;
 
-  @IsNotEmpty()
+ 
   @IsUUID()
   @IsString()
-  userId: string;
+  @IsNotEmpty()
+  readonly userId: string;
+
+
+ 
+  @IsUUID()
+  @IsString()
+  @IsNotEmpty()
+  readonly breedId: string;
+
+
+ 
+  @IsUUID()
+  @IsString()
+  @IsNotEmpty()
+  readonly specieId: string;
+
+
+  image: Express.Multer.File
 }
