@@ -1,15 +1,18 @@
 import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
-import { CreatePetDto, UpdatePetDto, FindBySpeciesEstimatedSizeDto, GetByIdPetDto } from 'src/dto/pet/pet.dto.barrel';
+import { CreatePetDto, UpdatePetDto, FindBySpeciesEstimatedSizeDto, GetByIdPetDto } from 'src/dto/pet/pet.barrel';
 import { Pet } from 'src/entities/pet.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PetInterface } from 'src/common/interface/pet/petInterface';
+import { PetMedia } from 'src/entities/petMedia.entity';
 
 @Injectable()
 export class PetsService implements PetInterface {
   constructor(
     @InjectRepository(Pet)
     private readonly petRepository: Repository<Pet>,
+    @InjectRepository(PetMedia)
+    private readonly petMediaRepository: Repository<PetMedia>,
   ) { }
 
   async newPetInterface(entity: CreatePetDto): Promise<Pet> {
@@ -24,7 +27,9 @@ export class PetsService implements PetInterface {
 
   async getAllPetsInterface(): Promise<Pet[]> {
     try {
-      return await this.petRepository.find();
+      return await this.petRepository.find({
+        relations: ['breed', 'specie', 'media', 'user'], // Cargar relaciones
+      });
     } catch (error) {
       console.error('Error retrieving pets:', error);
       throw new InternalServerErrorException('Unable to retrieve pets');
@@ -34,7 +39,10 @@ export class PetsService implements PetInterface {
   async getByIdPetInterface(dto: GetByIdPetDto): Promise<Pet> {
     const { id } = dto;
     try {
-      const pet = await this.petRepository.findOneBy({ id });
+      const pet = await this.petRepository.findOne({
+        where: { id },
+        relations: ['breed', 'specie', 'media', 'user'], // Cargar relaciones
+      });
       if (!pet) {
         throw new NotFoundException(`Pet with ID ${id} not found`);
       }
@@ -52,7 +60,13 @@ export class PetsService implements PetInterface {
       if (!pet) {
         throw new NotFoundException(`Pet with ID ${idForUpdate} not found`);
       }
-      return await this.petRepository.save(pet);
+      await this.petRepository.save(pet);
+      
+      // Devolver la mascota actualizada con relaciones
+      return await this.petRepository.findOne({
+        where: { id: idForUpdate },
+        relations: ['breed', 'specie', 'media', 'user'], // Cargar relaciones
+      });
     } catch (error) {
       console.error('Error updating pet:', error);
       throw new InternalServerErrorException('Unable to update the pet');
@@ -60,10 +74,13 @@ export class PetsService implements PetInterface {
   }
 
   async deletePetByIdInterface(id: GetByIdPetDto): Promise<void> {
+    const { id: petId } = id;
     try {
-      const result = await this.petRepository.delete(id);
+      await this.petMediaRepository.delete({ pet: { id: petId } });
+
+      const result = await this.petRepository.delete(petId);
       if (result.affected === 0) {
-        throw new NotFoundException(`Pet with ID ${id} not found`);
+        throw new NotFoundException(`Pet with ID ${petId} not found`);
       }
     } catch (error) {
       console.error('Error deleting pet:', error);
@@ -75,6 +92,10 @@ export class PetsService implements PetInterface {
     const { specieId, estimatedSize } = dto;
     try {
       return await this.petRepository.createQueryBuilder('pet')
+        .leftJoinAndSelect('pet.breed', 'breed')
+        .leftJoinAndSelect('pet.specie', 'species')
+        .leftJoinAndSelect('pet.media', 'media')
+        .leftJoinAndSelect('pet.user', 'user') // Cargar relaciones
         .where('pet.specieId = :specieId', { specieId })
         .andWhere('pet.size->>\'estimated\' = :estimatedSize', { estimatedSize })
         .getMany();

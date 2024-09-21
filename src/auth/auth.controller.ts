@@ -2,7 +2,7 @@ import { Body, Controller, Post, HttpCode, HttpStatus, UseGuards } from '@nestjs
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/services/users.service';
-import { CreateUserDto, LoginAuthDto } from '../dto/userDto/user.dto.barrel';
+import { CreateUserDto, LoginAuthDto } from '../dto/userDto/user.barrel';
 import { RolesGuard } from './auth-roles.guard'; // Asegúrate de que la ruta sea correcta
 
 @ApiTags('Auth')

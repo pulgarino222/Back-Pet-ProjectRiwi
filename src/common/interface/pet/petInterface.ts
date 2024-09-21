@@ -1,5 +1,5 @@
 import { Pet } from "src/entities/pet.entity";
-import { CreatePetDto, UpdatePetDto, FindBySpeciesEstimatedSizeDto, GetByIdPetDto } from "../../../dto/pet/pet.dto.barrel";
+import { CreatePetDto, UpdatePetDto, FindBySpeciesEstimatedSizeDto, GetByIdPetDto } from "../../../dto/pet/pet.barrel";
 
 export interface PetInterface {
   newPetInterface(entity: CreatePetDto): Promise<Pet>;

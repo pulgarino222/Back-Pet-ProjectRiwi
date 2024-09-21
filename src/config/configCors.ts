@@ -5,6 +5,6 @@ export function configCors(): CorsOptions {
   return {
     origin: allowedOrigins, // Frontend URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods
-    allowedHeaders: 'Content-Type, Accept', // Allowed headers
+    allowedHeaders: 'Content-Type, Accept, Authorization', // Allowed headers
   };
 }

@@ -1,4 +1,4 @@
-import { LoginAuthDto } from "../../../dto/userDto/user.dto.barrel";
+import { LoginAuthDto } from "../../../dto/userDto/user.barrel";
 import { User } from "src/entities/user.entity";
 
 export interface AuthInterface{

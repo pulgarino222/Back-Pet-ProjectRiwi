@@ -4,7 +4,7 @@ import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserInterface } from '../common/interface/userInterface/interfaces.barrel';
-import { GetUserByEmailDto, UpdateUserDto, GetUserByIdDto } from '../dto/userDto/user.dto.barrel';
+import { GetUserByEmailDto, UpdateUserDto, GetUserByIdDto } from '../dto/userDto/user.barrel';
 import { hash } from 'bcrypt';
 import { Role } from 'src/entities/role.entity';
 
