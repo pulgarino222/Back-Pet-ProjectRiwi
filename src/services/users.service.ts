@@ -103,16 +103,19 @@ export class UsersService implements UserInterface {
         throw new NotFoundException('User not found to update');
       }
   
-     
+      // Si se actualiza la contraseña, encripta la nueva contraseña
       if (newData.password) {
         newData.password = await hash(newData.password, 10);
       }
   
+      // Actualizar datos básicos del usuario (sin roles)
+      const { roles, ...restOfNewData } = newData;
+      Object.assign(user, restOfNewData); // Actualizar los campos de la entidad directamente
   
-      let roleEntities = user.roles; 
-      if (newData.roles) {
-        roleEntities = await Promise.all(
-          newData.roles.map(async (roleId) => {
+      // Si se proporcionan roles, actualiza la relación Many-to-Many de roles
+      if (roles) {
+        const roleEntities = await Promise.all(
+          roles.map(async (roleId) => {
             const role = await this.roleRepository.findOne({ where: { id: roleId } });
             if (!role) {
               throw new NotFoundException(`Role with ID ${roleId} not found`);
@@ -120,25 +123,25 @@ export class UsersService implements UserInterface {
             return role;
           })
         );
+        user.roles = roleEntities; // Asignar las entidades de roles actualizadas
       }
   
-     
-      await this.userRepository.update(idForUpdate, {
-        ...user,
-        ...newData,
-        roles: roleEntities, 
-      });
+      // Guardar el usuario actualizado
+      await this.userRepository.save(user);
   
-    
+      // Retorna el usuario actualizado con las relaciones cargadas
       return await this.userRepository.findOne({
         where: { id: idForUpdate },
-        relations: ['roles'], 
+        relations: ['roles'],
       });
     } catch (error) {
       console.error('Error updating user:', error);
       throw new InternalServerErrorException('Unable to update the user');
     }
   }
+  
+  
+  
   
   async findByEmail(dto: GetUserByEmailDto): Promise<User> {
     const { email } = dto;
