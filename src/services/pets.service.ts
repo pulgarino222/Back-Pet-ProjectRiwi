@@ -83,13 +83,22 @@ export class PetsService implements PetInterface {
   // Método para actualizar una mascota por ID
   async updatePetInterface(newData: UpdatePetDto, id: GetByIdPetDto): Promise<Pet> {
     const { id: idForUpdate } = id;
+    
+    // Agregar mensajes de consola para verificar el flujo
+    console.log('ID for update:', idForUpdate);
+    console.log('New data to update:', newData);
+  
     try {
       const pet = await this.petRepository.preload({ id: idForUpdate, ...newData });
+  
       if (!pet) {
+        console.log(`Pet with ID ${idForUpdate} not found`);
         throw new NotFoundException(`Pet with ID ${idForUpdate} not found`);
       }
+  
+      console.log('Pet found, updating...', pet);
       await this.petRepository.save(pet);
-      
+  
       // Devolver la mascota actualizada con relaciones
       return await this.getByIdPetInterface({ id: idForUpdate });
     } catch (error) {
@@ -97,6 +106,7 @@ export class PetsService implements PetInterface {
       throw new InternalServerErrorException('Unable to update the pet');
     }
   }
+  
 
   // Método para eliminar una mascota por ID
   async deletePetByIdInterface(id: GetByIdPetDto): Promise<void> {
