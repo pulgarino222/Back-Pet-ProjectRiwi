@@ -2,7 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsUUID, IsObject } from 'class-validator';
 
 export class CreatePetDto {
-  
+
   @ApiProperty({ description: 'Nombre de la mascota', example: 'Firulais' })
   @IsString()
   @IsOptional()
@@ -33,6 +33,11 @@ export class CreatePetDto {
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
 
+  @ApiProperty({ description: 'Raza de la mascota', example: 'Labrador' })
+  @IsString()
+  @IsNotEmpty()
+  readonly breed: string; 
+  
   @ApiProperty({ description: 'Peso de la mascota', example: 15 })
   @IsNotEmpty()
   @IsNumber()
@@ -78,11 +83,6 @@ export class CreatePetDto {
   @IsUUID()
   @IsNotEmpty()
   readonly userId: string;
-
-  @ApiProperty({ description: 'ID de la raza en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
-  @IsUUID()
-  @IsNotEmpty()
-  readonly breedId: string;
 
   @ApiProperty({ description: 'ID de la especie en formato UUID', example: '123e4567-e89b-12d3-a456-426614174000' })
   @IsUUID()
