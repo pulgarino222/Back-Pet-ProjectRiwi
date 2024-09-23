@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { User } from './user.entity';
-import { PetBreed } from './petBreed.entity';
 import { PetSpecies } from './petSpecies.entity';
 import { PetMedia } from './petMedia.entity';
 
@@ -11,8 +10,6 @@ export class Pet {
 
   @Column()
   name: string;
-
-
 
   @Column()
   age: number;
@@ -25,6 +22,9 @@ export class Pet {
     current: 'pequeño' | 'mediano' | 'grande';
     estimated: 'pequeño' | 'mediano' | 'grande' | 'desconocido';
   };
+
+  @Column()
+  breed: string;
 
   @Column()
   weight: number;
@@ -56,7 +56,5 @@ export class Pet {
   @ManyToOne(() => PetSpecies, (species) => species.pets)
   specie: PetSpecies;
 
-  @ManyToOne(() => PetBreed, (breed) => breed.pets)
-  breed: PetBreed;
-  
+
 }

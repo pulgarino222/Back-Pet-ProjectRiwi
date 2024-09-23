@@ -6,7 +6,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PetInterface } from 'src/common/interface/pet/petInterface';
 import { PetMedia } from 'src/entities/petMedia.entity';
 import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service';
-import { PetBreed } from 'src/entities/petBreed.entity';
 import { PetSpecies } from 'src/entities/petSpecies.entity';
 
 @Injectable()
@@ -16,8 +15,6 @@ export class PetsService implements PetInterface {
     private readonly petRepository: Repository<Pet>,
     @InjectRepository(PetMedia)
     private readonly petMediaRepository: Repository<PetMedia>,
-    @InjectRepository(PetBreed)
-    private readonly petBreedRepository: Repository<PetBreed>,
     @InjectRepository(PetSpecies)
     private readonly petSpeciesRepository: Repository<PetSpecies>,
     private readonly cloudinaryService: CloudinaryService
@@ -54,7 +51,7 @@ export class PetsService implements PetInterface {
   async getAllPetsInterface(): Promise<Pet[]> {
     try {
       return await this.petRepository.find({
-        relations: ['breed', 'specie', 'media', 'user'], // Cargar relaciones
+        relations: ['specie', 'media', 'user'], // Cargar relaciones
       });
     } catch (error) {
       console.error('Error retrieving all pets:', error);
@@ -68,7 +65,7 @@ export class PetsService implements PetInterface {
     try {
       const pet = await this.petRepository.findOne({
         where: { id },
-        relations: ['breed', 'specie', 'media', 'user'], // Cargar relaciones
+        relations: ['specie', 'media', 'user'], // Cargar relaciones
       });
       if (!pet) {
         throw new NotFoundException(`Pet with ID ${id} not found`);
@@ -131,7 +128,6 @@ export class PetsService implements PetInterface {
     try {
       const pets = await this.petRepository.createQueryBuilder('pet')
         .leftJoinAndSelect('pet.specie', 'species')
-        .leftJoinAndSelect('pet.breed', 'breed')
         .where('pet.specieId = :specieId', { specieId })
         .andWhere('pet.size->>\'estimated\' = :estimatedSize', { estimatedSize })
         .getMany();
