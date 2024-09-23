@@ -8,10 +8,13 @@ import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
 import { PetsModule } from './modules/pets.module';
 import { APP_FILTER } from '@nestjs/core';
 import { CustomExceptionFilter } from './common/exceptionFilters/http-exception.filter';
-import { RedirectController } from './redirect.controller';
+
 @Module({
   imports: [
+    // Import the ConfigModule
     ConfigModule,
+    
+    // Configure TypeOrmModule using values from ConfigService
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -23,18 +26,19 @@ import { RedirectController } from './redirect.controller';
         password: configService.get<string>('databaseEnvironments.password'),
         database: configService.get<string>('databaseEnvironments.database'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: process.env.NODE_ENV !== 'production',
+        synchronize: process.env.NODE_ENV !== 'production', // Enable synchronization only in non-production environments
       }),
     }),
     UsersModule,
     AuthModule,
     CloudinaryModule,
-    PetsModule,
+    PetsModule
   ],
-  controllers: [RedirectController], 
+
   providers: [{
     provide: APP_FILTER,
-    useClass: CustomExceptionFilter,
-  }],
+    useClass: CustomExceptionFilter
+  }]
+  // Other module metadata
 })
 export class AppModule {}

@@ -1,16 +1,12 @@
-import { Controller, Get, Redirect } from '@nestjs/common'; // Make sure to include Redirect
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  constructor(private readonly appService: AppService) {}
+
   @Get()
   getHello(): string {
-    return 'Hello, welcome to my API!';
-  }
-
-  // Adding the redirect
-  @Get('/') // Handles the root route
-  @Redirect('/api', 302) // Redirect automatically to /api
-  redirectToApi() {
-    // This method can be left empty
+    return this.appService.getHello();
   }
 }
