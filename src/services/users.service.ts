@@ -17,6 +17,7 @@ export class UsersService implements UserInterface {
     private readonly roleRepository: Repository<Role>
   ) {}
 
+  // Method to create a new user
   async newUserInterface(user: CreateUserDto): Promise<User> {
     try {
       const { password, roles } = user;
@@ -45,10 +46,11 @@ export class UsersService implements UserInterface {
     }
   }
 
+  // Method to get all users
   async getAllUsersInterface(): Promise<User[]> {
     try {
       const users = await this.userRepository.find({ 
-        relations: ['roles', 'pets'], // Agregar relaciones de mascotas
+        relations: ['roles', 'pets'], 
       });
       return users;
     } catch (error) {
@@ -57,12 +59,13 @@ export class UsersService implements UserInterface {
     }
   }
 
+  // Method to get a user by ID
   async getByIdUsersInterface(dto: GetUserByIdDto): Promise<User> {
     const { id } = dto;
     try {
       const user = await this.userRepository.findOne({
         where: { id },
-        relations: ['roles', 'pets'], // Agregar relaciones de mascotas
+        relations: ['roles', 'pets'], 
       });
   
       if (!user) {
@@ -76,6 +79,7 @@ export class UsersService implements UserInterface {
     }
   }
   
+  // Method to delete a user by ID
   async deleteUserByIdInterface(idToDelete: GetUserByIdDto): Promise<User> {
     try {
       const user = await this.getByIdUsersInterface(idToDelete);
@@ -92,6 +96,7 @@ export class UsersService implements UserInterface {
     }
   }
 
+  // Method to update a user
   async updateUsersInterface(newData: UpdateUserDto, idToUpdate: GetUserByIdDto): Promise<User> {
     const { id: idForUpdate } = idToUpdate;
   
@@ -126,7 +131,7 @@ export class UsersService implements UserInterface {
   
       return await this.userRepository.findOne({
         where: { id: idForUpdate },
-        relations: ['roles', 'pets'], // Agregar relaciones de mascotas
+        relations: ['roles', 'pets'], 
       });
     } catch (error) {
       console.error('Error updating user:', error);
@@ -134,12 +139,13 @@ export class UsersService implements UserInterface {
     }
   }
 
+  // Method to find a user by email
   async findByEmail(dto: GetUserByEmailDto): Promise<User> {
     const { email } = dto;
     try {
       const user = await this.userRepository.findOne({
         where: { email },
-        relations: ['roles', 'pets'], // Agregar relaciones de mascotas
+        relations: ['roles', 'pets'], 
       });
       if (!user) {
         throw new NotFoundException('User not found');

@@ -7,6 +7,6 @@ export const config = new DocumentBuilder()
   .setVersion('1.0')
   .addTag('Auth')
   .addTag('Users')
-  .addTag('Pets') // Add the tag for Pets
+  .addTag('Pets') 
   .addBearerAuth()
   .build();

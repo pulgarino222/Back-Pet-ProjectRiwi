@@ -15,7 +15,7 @@ export class AuthService {
     data: User;
     access_token: string;
 }> {
-    const user = await this.usersService.findByEmail({ email }); // Asegúrate de que 'email' esté en el objeto
+    const user = await this.usersService.findByEmail({ email });
     if (!user) {
         throw new HttpException('User not found', 404);
     }

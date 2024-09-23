@@ -6,9 +6,17 @@ import { UsersController } from 'src/controllers/users.controller';
 import { Role } from 'src/entities/role.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User,Role])],  // import the user repository
-  providers: [UsersService],
-  exports: [UsersService],
-  controllers:[UsersController]
+  imports: [
+    TypeOrmModule.forFeature([User, Role]) // Import the user and role repositories
+  ],
+  providers: [
+    UsersService // Service for user-related operations
+  ],
+  exports: [
+    UsersService // Export UsersService for use in other modules
+  ],
+  controllers: [
+    UsersController // Controller for handling user-related requests
+  ]
 })
 export class UsersModule {}

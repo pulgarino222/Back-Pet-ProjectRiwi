@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from './modules/config.module'; // Asegúrate que esta ruta sea correcta
+import { ConfigModule } from './modules/config.module';
 import { ConfigService } from '@nestjs/config';
 import { UsersModule } from './modules/users.module';
 import { AuthModule } from './auth/auth.module';
@@ -11,10 +11,10 @@ import { CustomExceptionFilter } from './common/exceptionFilters/http-exception.
 
 @Module({
   imports: [
-    // Importamos el ConfigModule
+    // Import the ConfigModule
     ConfigModule,
     
-    // Configuramos TypeOrmModule usando valores del ConfigService
+    // Configure TypeOrmModule using values from ConfigService
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -25,8 +25,8 @@ import { CustomExceptionFilter } from './common/exceptionFilters/http-exception.
         username: configService.get<string>('databaseEnvironments.username'),
         password: configService.get<string>('databaseEnvironments.password'),
         database: configService.get<string>('databaseEnvironments.database'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'], // Para cargar entidades
-        synchronize: configService.get<boolean>('databaseEnvironments.synchronize'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: process.env.NODE_ENV !== 'production', // Enable synchronization only in non-production environments
       }),
     }),
     UsersModule,
@@ -35,11 +35,10 @@ import { CustomExceptionFilter } from './common/exceptionFilters/http-exception.
     PetsModule
   ],
 
-  providers:[{
-    provide:APP_FILTER,
-    useClass:CustomExceptionFilter
-
+  providers: [{
+    provide: APP_FILTER,
+    useClass: CustomExceptionFilter
   }]
-  // otros metadatos del módulo
+  // Other module metadata
 })
 export class AppModule {}

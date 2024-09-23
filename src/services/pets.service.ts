@@ -20,38 +20,39 @@ export class PetsService implements PetInterface {
     private readonly cloudinaryService: CloudinaryService
   ) {}
 
-  // Método para crear una nueva mascota
+  // Method to create a new pet
   async newPetInterface(entity: CreatePetDto): Promise<Pet> {
     if (!entity.image) {
       throw new Error('Image file is required');
     }
 
-    // Crea y guarda la mascota en la base de datos
+    // Create and save the pet in the database
     const newPet = this.petRepository.create({ ...entity });
     const savedPet = await this.petRepository.save(newPet);
 
-    // Sube la imagen a Cloudinary
+    // Upload the image to Cloudinary
     const uploadedImage = await this.cloudinaryService.uploadFile(entity.image);
     const imageUrl = uploadedImage.secure_url;
     const mediaType = uploadedImage.resource_type;
 
-    // Crea la entrada en PetMedia asociada a la mascota
+    // Create the entry in PetMedia associated with the pet
     const petMedia = this.petMediaRepository.create({
       media_type: mediaType,
       url: imageUrl,
-      pet: savedPet,  // Asocia la entidad Pet a la imagen
+      pet: savedPet,  // Associate the Pet entity with the image
     });
 
     await this.petMediaRepository.save(petMedia);
 
-    return this.getByIdPetInterface({ id: savedPet.id }); // Devuelve la mascota con relaciones
+    return this.getByIdPetInterface({ id: savedPet.id }); // Return the pet with relationships
   }
 
-  // Método para obtener todas las mascotas
+  // Method to get all pets
   async getAllPetsInterface(): Promise<Pet[]> {
     try {
       return await this.petRepository.find({
-        relations: ['specie', 'media', 'user'], // Cargar relaciones
+
+        relations: ['specie', 'media', 'user'], // Load relationships
       });
     } catch (error) {
       console.error('Error retrieving all pets:', error);
@@ -59,13 +60,15 @@ export class PetsService implements PetInterface {
     }
   }
 
-  // Método para obtener una mascota por ID
+  // Method to get a pet by ID
   async getByIdPetInterface(dto: GetByIdPetDto): Promise<Pet> {
     const { id } = dto;
     try {
       const pet = await this.petRepository.findOne({
         where: { id },
-        relations: ['specie', 'media', 'user'], // Cargar relaciones
+
+        relations: ['specie', 'media', 'user'], // Load relationships
+
       });
       if (!pet) {
         throw new NotFoundException(`Pet with ID ${id} not found`);
@@ -77,11 +80,11 @@ export class PetsService implements PetInterface {
     }
   }
 
-  // Método para actualizar una mascota por ID
+  // Method to update a pet by ID
   async updatePetInterface(newData: UpdatePetDto, id: GetByIdPetDto): Promise<Pet> {
     const { id: idForUpdate } = id;
     
-    // Agregar mensajes de consola para verificar el flujo
+    // Add console messages to verify the flow
     console.log('ID for update:', idForUpdate);
     console.log('New data to update:', newData);
   
@@ -96,16 +99,15 @@ export class PetsService implements PetInterface {
       console.log('Pet found, updating...', pet);
       await this.petRepository.save(pet);
   
-      // Devolver la mascota actualizada con relaciones
+      // Return the updated pet with relationships
       return await this.getByIdPetInterface({ id: idForUpdate });
     } catch (error) {
       console.error('Error updating pet:', error);
       throw new InternalServerErrorException('Unable to update the pet');
     }
   }
-  
 
-  // Método para eliminar una mascota por ID
+  // Method to delete a pet by ID
   async deletePetByIdInterface(id: GetByIdPetDto): Promise<void> {
     const { id: petId } = id;
     try {
@@ -121,7 +123,7 @@ export class PetsService implements PetInterface {
     }
   }
 
-  // Método para buscar mascotas por especie y tamaño estimado
+  // Method to find pets by species and estimated size
   async findBySpeciesAndEstimatedSize(specie: FindBySpeciesDto, size: FindBySize): Promise<Pet[]> {
     const { specieId } = specie;
     const { estimatedSize } = size;
