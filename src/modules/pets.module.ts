@@ -8,6 +8,7 @@ import { PetSpecies } from 'src/entities/petSpecies.entity';
 import { PetsService } from 'src/services/pets.service';
 
 @Module({
+
     imports: [
         TypeOrmModule.forFeature([Pet, PetMedia, PetSpecies]) // Import the TypeORM module for the specified entities
     ],
@@ -22,5 +23,7 @@ import { PetsService } from 'src/services/pets.service';
     controllers: [
         PetsController // Controller for handling pet-related requests
     ]
+
+
 })
 export class PetsModule {}

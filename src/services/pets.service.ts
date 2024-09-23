@@ -51,6 +51,7 @@ export class PetsService implements PetInterface {
   async getAllPetsInterface(): Promise<Pet[]> {
     try {
       return await this.petRepository.find({
+
         relations: ['specie', 'media', 'user'], // Load relationships
       });
     } catch (error) {
@@ -65,7 +66,9 @@ export class PetsService implements PetInterface {
     try {
       const pet = await this.petRepository.findOne({
         where: { id },
+
         relations: ['specie', 'media', 'user'], // Load relationships
+
       });
       if (!pet) {
         throw new NotFoundException(`Pet with ID ${id} not found`);
