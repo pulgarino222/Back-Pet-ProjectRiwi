@@ -47,7 +47,7 @@ export class Pet {
   @Column({ nullable: true })
   personality?: string;
 
-  @ManyToOne(() => User, (user) => user.pets_id)
+  @ManyToOne(() => User, (user) => user.pets)
   user: User;
 
   @OneToMany(() => PetMedia, (media) => media.pet)

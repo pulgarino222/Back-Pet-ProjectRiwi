@@ -10,7 +10,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 @ApiBearerAuth()
 @ApiTags('Pets')
 @Controller('pets')
-// @UseGuards(RolesGuard)
+
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 
@@ -21,13 +21,14 @@ export class PetsController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
   async getAllPets(): Promise<Pet[]> {
     try {
-      return await this.petsService.getAllPetsInterface(); // Asegúrate de incluir las relaciones en este método
+      return await this.petsService.getAllPetsInterface();
     } catch (error) {
       throw new InternalServerErrorException('Unable to retrieve pets');
     }
   }
 
   // Route to get a pet by ID
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Get a pet by ID' })
   @ApiParam({ name: 'id', description: 'Pet ID', type: String })
@@ -42,6 +43,7 @@ export class PetsController {
   }
 
   // Route to create a new pet
+  @UseGuards(JwtAuthGuard)
   @Post('create')
   @UseInterceptors(FileInterceptor('image'))
   async createPet(
@@ -63,6 +65,7 @@ export class PetsController {
   }
 
   // Route to update a pet by ID
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   @ApiOperation({ summary: 'Update a pet by ID' })
   @ApiParam({ name: 'id', description: 'Pet ID', type: String })
@@ -81,6 +84,7 @@ export class PetsController {
   }
 
   // Route to delete a pet by ID
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a pet by ID' })
   @ApiParam({ name: 'id', description: 'Pet ID', type: String })

@@ -43,5 +43,5 @@ export class User {
 
 
   @OneToMany(() => Pet, (pet) => pet.user)
-  pets_id: Pet[];
+  pets: Pet[];
 }
