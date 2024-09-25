@@ -17,14 +17,12 @@ export class UsersService implements UserInterface {
     private readonly roleRepository: Repository<Role>
   ) {}
 
-  // Creates a new user
+  // Method to create a new user
   async newUserInterface(user: CreateUserDto): Promise<User> {
     try {
       const { password, roles } = user;
-      // Encrypt the password
       const encryptedPassword = await hash(password, 10);
-
-      // Find and validate all roles
+  
       const roleEntities = await Promise.all(
         roles.map(async (roleId) => {
           const role = await this.roleRepository.findOne({ where: { id: roleId } });
@@ -34,14 +32,13 @@ export class UsersService implements UserInterface {
           return role;
         })
       );
-
-      // Create and save the new user
+  
       const newUser = this.userRepository.create({
         ...user,
         password: encryptedPassword,
         roles: roleEntities, 
       });
-
+  
       return await this.userRepository.save(newUser); 
     } catch (error) {
       console.error('Error creating the user:', error);
@@ -49,7 +46,7 @@ export class UsersService implements UserInterface {
     }
   }
 
-  // Retrieves all users with their roles and pets
+  // Method to get all users
   async getAllUsersInterface(): Promise<User[]> {
     try {
       const users = await this.userRepository.find({ 
@@ -62,7 +59,7 @@ export class UsersService implements UserInterface {
     }
   }
 
-  // Retrieves a user by ID with their roles and pets
+  // Method to get a user by ID
   async getByIdUsersInterface(dto: GetUserByIdDto): Promise<User> {
     const { id } = dto;
     try {
@@ -70,11 +67,11 @@ export class UsersService implements UserInterface {
         where: { id },
         relations: ['roles', 'pets'], 
       });
-
+  
       if (!user) {
         throw new NotFoundException('User not found');
       }
-
+  
       return user;
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -82,7 +79,7 @@ export class UsersService implements UserInterface {
     }
   }
   
-  // Deletes a user by ID
+  // Method to delete a user by ID
   async deleteUserByIdInterface(idToDelete: GetUserByIdDto): Promise<User> {
     try {
       const user = await this.getByIdUsersInterface(idToDelete);
@@ -99,7 +96,7 @@ export class UsersService implements UserInterface {
     }
   }
 
-  // Updates a user's information
+  // Method to update a user
   async updateUsersInterface(newData: UpdateUserDto, idToUpdate: GetUserByIdDto): Promise<User> {
     const { id: idForUpdate } = idToUpdate;
   
@@ -110,7 +107,6 @@ export class UsersService implements UserInterface {
         throw new NotFoundException('User not found to update');
       }
   
-      // If a new password is provided, hash it
       if (newData.password) {
         newData.password = await hash(newData.password, 10);
       }
@@ -118,7 +114,6 @@ export class UsersService implements UserInterface {
       const { roles, ...restOfNewData } = newData;
       Object.assign(user, restOfNewData);
   
-      // Update roles if provided
       if (roles) {
         const roleEntities = await Promise.all(
           roles.map(async (roleId) => {
@@ -134,7 +129,6 @@ export class UsersService implements UserInterface {
   
       await this.userRepository.save(user);
   
-      // Fetch and return the updated user with relations
       return await this.userRepository.findOne({
         where: { id: idForUpdate },
         relations: ['roles', 'pets'], 
@@ -145,7 +139,7 @@ export class UsersService implements UserInterface {
     }
   }
 
-  // Finds a user by email with their roles and pets
+  // Method to find a user by email
   async findByEmail(dto: GetUserByEmailDto): Promise<User> {
     const { email } = dto;
     try {

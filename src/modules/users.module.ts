@@ -5,24 +5,18 @@ import { UsersService } from '../services/users.service';
 import { UsersController } from 'src/controllers/users.controller';
 import { Role } from 'src/entities/role.entity';
 
-// Define the UsersModule using the @Module decorator
 @Module({
   imports: [
-    // Import TypeOrmModule and specify the entities to be used (User and Role)
-    TypeOrmModule.forFeature([User, Role])
+    TypeOrmModule.forFeature([User, Role]) // Import the user and role repositories
   ],
   providers: [
-    // Register the UsersService as a provider for dependency injection
-    UsersService
+    UsersService // Service for user-related operations
   ],
   exports: [
-    // Export UsersService to make it available for use in other modules
-    UsersService
+    UsersService // Export UsersService for use in other modules
   ],
   controllers: [
-    // Register the UsersController to handle HTTP requests related to users
-    UsersController
+    UsersController // Controller for handling user-related requests
   ]
 })
-// Export the UsersModule class for use in the application
 export class UsersModule {}
