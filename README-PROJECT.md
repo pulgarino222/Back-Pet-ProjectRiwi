@@ -209,7 +209,7 @@ El uso de MVC es importante ya que permite mantener una clara separación de res
    - Cumplir con las pautas de accesibilidad web (WCAG).
 
 ## Enlaces
-- **Prototipo del Proyecto**: [Figma] (https://back-pet-projectriwi-production.up.railway.app/api)
+- **[Prototipo del Proyecto: Figma](https://back-pet-projectriwi-production.up.railway.app/api)
 - **Documentación de Endpoints**: [Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
 - **Tablero de Gestión del Proyecto - Frontend**: [PAM Front](https://acanorave.atlassian.net/jira/software/projects/PAM/boards/3)
 
