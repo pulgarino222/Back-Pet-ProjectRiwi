@@ -87,15 +87,25 @@ Puedes encontrar la documentación completa de los endpoints a través de Swagge
 
 [Documentación Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
 
+
+
+## Diagrama UML
+
+![image](https://github.com/user-attachments/assets/bb0a03ce-fe1f-4edc-871e-7eb8524e32d8) 
+
 ## Modelo de Base de Datos
+
+![image](https://github.com/user-attachments/assets/3d973ac3-2014-4ad4-8831-0014e7fd59b0)
 
 ### Modelos UML de Clases
 
-*(Aquí puedes insertar las imágenes o descripciones de los modelos UML de clases que has creado.)*
+![image](https://github.com/user-attachments/assets/e2df79a7-395a-4d8d-9d11-25757eb00573) 
 
 ## Modelo de Arquitectura de Componentes
 
 La arquitectura del proyecto utiliza el patrón Modelo-Vista-Controlador (MVC) tanto en el front-end como en el back-end. 
+
+![image](https://github.com/user-attachments/assets/bae4911d-ca65-4f91-96b1-b49d2193c057)
 
 ### ¿Qué es MVC?
 
@@ -202,6 +212,20 @@ El uso de MVC es importante ya que permite mantener una clara separación de res
 - **Prototipo del Proyecto**: [Figma](https://www.figma.com/design/MyadSASPShT6aJTsZiywbH/PAM?node-id=1669-162202&node-type=canvas)
 - **Documentación de Endpoints**: [Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
 - **Tablero de Gestión del Proyecto - Frontend**: [PAM Front](https://acanorave.atlassian.net/jira/software/projects/PAM/boards/3)
+
+## Informe de trabajo completado Frontend
+![image](https://github.com/user-attachments/assets/2c482808-8ee0-4861-ac65-009f000c4a03) 
+
+## Diagrama de flujo acumulado Frontend
+![image](https://github.com/user-attachments/assets/2dc1edf6-a2d3-4bb3-ab3e-1e5be455abeb)
+
 - **Tablero de Gestión del Proyecto - Backend**: [PAM Backend](https://acanorave.atlassian.net/jira/software/projects/PAMB/boards/4)
 
+## Informe de trabajo completado Backend
+
+![image](https://github.com/user-attachments/assets/f5adba6a-cacc-421f-9020-fd83e4ee8f77)
+
+## Diagrama de flujo acumulado Backend
+
+![image](https://github.com/user-attachments/assets/fdf8f871-ed5d-4eaa-82b8-dc8c5593546d)
 
