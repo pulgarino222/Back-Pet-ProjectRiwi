@@ -1,8 +1,8 @@
 # Pet Adoption Manager (PAM)
 
-## Proyecto Final - Riwi
+## Final Project - Riwi
 
-### Integrantes del Equipo
+### Team Members
 - **Andrés Cano Rave**  
 - **Deybison Camilo Sepúlveda**  
 - **Santiago Londoño**  
@@ -12,65 +12,66 @@
 
 ## Clan: Jeff Bezos
 
-## Descripción del Proyecto
-**Pet Adoption Manager (PAM)** es una aplicación web diseñada para facilitar la adopción de perros y gatos en el Valle de Aburrá. La plataforma centraliza la información de diversas fundaciones, ayudando a los adoptantes a encontrar fácilmente a sus futuros compañeros y simplificando el proceso de adopción.
+## Project Description
+Pet Adoption Manager (PAM) is a web application designed to facilitate the adoption of dogs and cats in the Valle de Aburrá. The platform centralizes information from various foundations, helping adopters easily find their future companions and simplifying the adoption process.
 
-## Contenido
-1. [Objetivo General](#objetivo-general)
-2. [Planteamiento del Problema](#planteamiento-del-problema)
-3. [Alcance del Proyecto](#alcance-del-proyecto)
-4. [Logo del Proyecto](#logo-del-proyecto)
+## Contents
+1. [General Objective](#objetivo-general)
+2. [Problem Statement](#planteamiento-del-problema)
+3. [Project Scope](#alcance-del-proyecto)
+4. [Project Logo](#logo-del-proyecto)
 5. [Slogan](#slogan)
-6. [Título del Proyecto Producto](#título-del-proyecto-producto)
-7. [Integrantes del Grupo](#integrantes-del-grupo)
-8. [Variables de Entorno](#variables-de-entorno)
-9. [Modelo de Base de Datos](#modelo-de-base-de-datos)
-10. [Modelos UML de Clases](#modelos-uml-de-clases)
-11. [Modelo Arquitectura de Componentes](#modelo-arquitectura-de-componentes)
-12. [Casos de Uso](#casos-de-uso)
-13. [Historias de Usuario - Epics](#historias-de-usuario---epics)
-14. [Requerimientos Funcionales](#requerimientos-funcionales)
-15. [Requerimientos No Funcionales](#requerimientos-no-funcionales)
-16. [Enlace a Tableros de Gestión del Proyecto](#enlace-a-tableros-de-gestión-del-proyecto)
-17. [Enlace a Prototipo del Proyecto](#enlace-a-prototipo-del-proyecto)
+6. [Project Product Title](#título-del-proyecto-producto)
+7. [Group Members](#integrantes-del-grupo)
+8. [Environment Variables](#variables-de-entorno)
+9. [Database Model](#modelo-de-base-de-datos)
+10. [UML Class Models](#modelos-uml-de-clases)
+11. [Component Architecture Model](#modelo-arquitectura-de-componentes)
+12. [Use Cases](#casos-de-uso)
+13. [User Stories - Epics](#historias-de-usuario---epics)
+14. [Functional Requirements](#requerimientos-funcionales)
+15. [Non-Functional Requirements](#requerimientos-no-funcionales)
+16. [Project Management Board Links](#enlace-a-tableros-de-gestión-del-proyecto)
+17. [Project Prototype Link](#enlace-a-prototipo-del-proyecto)
 
 ---
 
-## Objetivo General
-Desarrollar una página web que permita a los usuarios buscar y adoptar perros y gatos que se encuentran en un hogar temporal en el Valle de Aburrá, facilitando el contacto entre los adoptantes y las organizaciones de protección animal.
+## General Objective
+To develop a website that allows users to search for and adopt dogs and cats currently in temporary homes in the Valle de Aburrá, facilitating contact between adopters and animal protection organizations.
 
-## Planteamiento del Problema
-En el Valle de Aburrá, muchas personas quieren adoptar una mascota, pero la información sobre los animales disponibles está dispersa entre diferentes fundaciones. Esto complica el proceso de adopción, haciendo que sea confuso y frustrante para los interesados. Nuestra solución es centralizar toda la información en una sola aplicación web.
+## Problem Statement
+In the Valle de Aburrá, many people want to adopt a pet, but information about available animals is scattered among different foundations. This complicates the adoption process, making it confusing and frustrating for interested parties. Our solution is to centralize all information in a single web application.
 
-## Alcance del Proyecto
-El proyecto presentará un MVP (Producto Mínimo Viable) que centralice la información de diversas fundaciones del Valle de Aburrá para que los usuarios puedan obtener información unificada y realizar la adopción de mascotas.
+## Project Scope
+The project will present an MVP (Minimum Viable Product) that centralizes information from various foundations in the Valle de Aburrá so that users can obtain unified information and proceed with pet adoption.
 
-Si se aprueba el MVP, los próximos pasos incluirán:
-- Búsqueda de mascotas por raza, edad, tamaño, sexo, ubicación y necesidades especiales.
-- Visualización de perfiles detallados de cada mascota con fotos e información relevante.
-- Sistema de "match" para facilitar la adopción.
-- Gestión de solicitudes de adopción y comunicación con los adoptantes.
+If the MVP is approved, the next steps will include:
 
-## Logo del Proyecto
+-Searching for pets by breed, age, size, gender, location, and special needs.
+-Viewing detailed profiles of each pet with photos and relevant information.
+-A matching system to facilitate adoption.
+-Managing adoption requests and communication with adopters.
+
+## Project Logo
 ![image](https://github.com/user-attachments/assets/d3abee25-baf5-4660-8047-7f5d5d2d0194)  
 
 ## Slogan
 **"Más que una adopción, es un propósito."**
 
-## Título del Proyecto Producto
+## Project Product Title
 **Pet Adoption Manager (PAM)**
 
-### ¿Por qué?
+### Why?
 PAM nace de la necesidad de simplificar el proceso de adopción de mascotas, permitiendo a los interesados acceder fácilmente a información sobre varios puntos de adopción.
 
-### ¿Para qué?
-Con PAM, los usuarios pueden explorar opciones y encontrar a su próximo compañero de vida sin tener que visitar cada fundación de manera individual.
+### What for?
+With PAM, users can explore options and find their next life companion without having to visit each foundation individually.
 
-### ¿Para quién?
-Está dirigido a personas y familias que desean adoptar mascotas, proporcionándoles una plataforma para simplificar el proceso.
+### For whom?
+It is aimed at individuals and families who wish to adopt pets, providing them with a platform to simplify the process.
 
-## Integrantes del Grupo
-| Integrante                   | Email                                    | LinkedIn                                                                                     | GitHub          |
+## Group Members
+| Member                   | Email                                    | LinkedIn                                                                                     | GitHub          |
 | ---------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------- | --------------- |
 | **Emanuel Estrada Muñoz**     | emanu6a@gmail.com                        | N/A                                                                                          | coder-emanuel   |
 | **Alexis Soto Barreiro**      | soto.alexis.8810@gmail.com               | [Alexis Soto LinkedIn](https://www.linkedin.com/in/alexis-soto-barreiro-6a898a219/)           | sotomen10       |
@@ -79,21 +80,19 @@ Está dirigido a personas y familias que desean adoptar mascotas, proporcionánd
 | **Santiago Londoño**          | santiago.londono07@gmail.com             | [Santiago Londoño LinkedIn](https://www.linkedin.com/in/san7imo/)                             | san7ilo         |
 | **Deybison Sepulveda**        | camimilo2014@gmail.com                   | [Deybison Sepulveda LinkedIn](https://www.linkedin.com/in/deybison-sepulveda/)                | Camilo1599      |
 
-# Proyecto de Aplicación para Adopción de Mascotas
 
-## Documentación de los Endpoints
+## API Endpoint Documentation
 
-Puedes encontrar la documentación completa de los endpoints a través de Swagger en el siguiente enlace:
+You can find the complete documentation of the endpoints through Swagger at the following link:
 
 [Documentación Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
 
 
 
-## Diagrama UML
-
+## UML Diagram
 ![image](https://github.com/user-attachments/assets/bb0a03ce-fe1f-4edc-871e-7eb8524e32d8) 
 
-## Modelo de Base de Datos
+## Database Model
 
 ![image](https://github.com/user-attachments/assets/3d973ac3-2014-4ad4-8831-0014e7fd59b0)
 
@@ -101,131 +100,130 @@ Puedes encontrar la documentación completa de los endpoints a través de Swagge
 
 ![image](https://github.com/user-attachments/assets/4cce14da-6dd0-4c98-a628-d6dd700280d5) 
 
-## Modelo de Arquitectura de Componentes
+## Component Architecture Model
 
-La arquitectura del proyecto utiliza el patrón Modelo-Vista-Controlador (MVC) tanto en el front-end como en el back-end. 
+The project's architecture uses the Model-View-Controller (MVC) pattern in both the front-end and back-end. 
 
 ![image](https://github.com/user-attachments/assets/bae4911d-ca65-4f91-96b1-b49d2193c057)
 
-### ¿Qué es MVC?
+### What is MVC?
 
-El MVC o Modelo-Vista-Controlador es un patrón de arquitectura de software que separa la lógica de la aplicación de la lógica de la vista. Este patrón se divide en tres componentes principales:
+MVC, or Model-View-Controller, is a software architecture pattern that separates application logic from view logic. This pattern is divided into three main components:
 
-- **Modelo**: Representa la estructura de los datos y la lógica de negocio.
-- **Vista**: Es la interfaz de usuario que presenta los datos al usuario final.
-- **Controlador**: Actúa como intermediario entre el Modelo y la Vista, gestionando la entrada del usuario y actualizando el Modelo o la Vista en consecuencia.
+- **Model**: Represents the structure of data and business logic.
+- **View**: The user interface that presents data to the end user.
+- **Controller**: Acts as an intermediary between the Model and the View, managing user input and updating the Model or View accordingly.
 
-El uso de MVC es importante ya que permite mantener una clara separación de responsabilidades y facilita la escalabilidad y el mantenimiento del software. La mayoría de los frameworks modernos utilizan MVC o alguna adaptación del mismo para la arquitectura de aplicaciones.
+Using MVC is important as it allows for a clear separation of responsibilities and facilitates scalability and maintenance of the software. Most modern frameworks use MVC or some adaptation of it for application architecture.
 
 
-## Casos de Uso Principales
-1. **Visualizar perros y gatos disponibles para adopción**  
-   - Actor: Usuario visitante.
-   - Flujo: Ver lista de mascotas, filtrar por especie, raza, edad, etc.
+## Main Use Cases
+1. **View available dogs and cats for adoption**  
+   - Actor: Visitor user.
+   - Flow: View the list of pets, filter by species, breed, age, etc.
    
-2. **Enviar formulario de contacto para adopción**  
-   - Actor: Usuario visitante.
-   - Flujo: Enviar un formulario de contacto para adoptar una mascota.
+2. **Send contact form for adoption**  
+   - Actor: Visitor user.
+   - Flow: Submit a contact form to adopt a pet.
 
-3. **Registro de mascota por el usuario master**  
-   - Actor: Usuario master.
-   - Flujo: Registrar una nueva mascota disponible para adopción.
+3. **Pet registration by master userr**  
+  - Actor: Master user.
+  - Flow: Register a new pet available for adoption.
 
-4. **Registro de usuario master**  
-   - Actor: Administrador del sistema.
-   - Flujo: Registrar un nuevo usuario master.
+4. **Master user registration**  
+   - Actor: System administrator.
+   - Flow: Register a new master user.
 
-5. **Gestión de mascotas**  
-   - Actor: Usuario master.
-   - Flujo: Actualizar o eliminar mascotas registradas.
-  
+5. **Pet management**  
+   - Actor: Master user.
+   - Flow: Update or delete registered pets.  
 
 
-# Historias de Usuario - Epics
+# User Stories - Epics
 
 ## EPICS BACKEND
 
 ### Users
-- **Crear Usuario**: Implementar la funcionalidad para registrar nuevos usuarios.
-- **Implementar Excepciones**: Manejar errores y excepciones durante las operaciones con usuarios.
-- **Listar Usuarios**: Obtener una lista de todos los usuarios registrados.
-- **Actualizar Perfil**: Permitir a los usuarios actualizar su información personal.
-- **Iniciar Sesión**: Implementar la funcionalidad para que los usuarios inicien sesión.
-- **Implementar Controladores**: Desarrollar controladores para gestionar las solicitudes de los usuarios.
-- **Implementar Validaciones**: Validar los datos ingresados por los usuarios.
+- **Create User**: Implement functionality to register new users.
+- **Implement Exceptions**: Handle errors and exceptions during user operations.
+- **List Users**: Retrieve a list of all registered users.
+- **Update Profile**: Allow users to update their personal information.
+- **Log In**: Implement functionality for users to log in.
+- **Implement Controllers**: Develop controllers to manage user requests.
+- **Implement Validations**: Validate user input data.
 
 ### Database
-- **Creación Diagrama de Clases**: Diseñar un diagrama de clases para la base de datos.
-- **Implementación de Base de Datos**: Crear la base de datos según el modelo definido.
-- **Implementación de UML**: Implementar el modelo UML en la base de datos.
+- **Create Class Diagram**: Design a class diagram for the database.
+- **Database Implementation**:Create the database according to the defined model..
+- **UML Implementation**: Implement the UML model in the database.
 
 ### Pets
-- **Eliminar Mascota**: Permitir la eliminación de registros de mascotas.
-- **Actualizar Información de una Mascota**: Facilitar la actualización de los datos de las mascotas.
+- **Delete Pet**: Allow deletion of pet records.
+- **Update Pet Information:**: Facilitate the updating of pet data.
 
 ### Pet-photo
-- **Subir una Foto de Mascotas**: Implementar la funcionalidad para que los usuarios suban fotos de sus mascotas.
+- **Upload a Pet Photo**: Implement functionality for users to upload photos of their pets.
 
 ## EPICS FRONTEND
 
 ### User
-- **Registrar Nuevo Usuario**: Implementar el formulario para el registro de nuevos usuarios.
-- **Iniciar Sesión de Usuario**: Desarrollar la interfaz para que los usuarios inicien sesión.
+- **Register New User**: Implement the form for registering new users.
+- **User Log In**: Develop the interface for users to log in.
 
 ### Pet
-- **CRUD de Mascota**: Permitir las operaciones de Crear, Leer, Actualizar y Eliminar (CRUD) en la gestión de mascotas.
-- **Eliminar Mascota**: Implementar la funcionalidad para eliminar registros de mascotas.
-- **Ver Lista de Mascotas Disponibles**: Mostrar una lista de todas las mascotas disponibles para adopción.
-- **Ver Detalles de una Mascota**: Proporcionar información detallada sobre cada mascota.
-
+- **CRUD for Pets**: Allow Create, Read, Update, and Delete (CRUD) operations in pet management.
+- **Delete Pet**:  Implement functionality to delete pet records.
+- **View List of Available Pets**: Show a list of all pets available for adoption.
+- **View Pet Details:**:Provide detailed information about each pet
+- 
 ### Organization
-- **CRUD de Fundación**: Permitir las operaciones CRUD para gestionar las fundaciones.
+- **CRUD for Foundation**:  Allow CRUD operations to manage foundations.
 
 ### Pet-photo
-- **Actualizar Información de Mascota**: Facilitar la actualización de la información y fotos de las mascotas.
+- **Update Pet Information**: Facilitate the updating of pet information and photos.
 
 
 
 ## Requerimientos Funcionales
-1. **CRUD para Usuarios (Usuario Master)**
-   - Crear, listar, actualizar y eliminar usuarios.
-2. **CRUD para Mascotas (Usuario Master)**
-   - Crear, listar, actualizar y eliminar mascotas.
-3. **Acceso a Mascotas (Usuario visitante)**
-   - Ver la lista de mascotas disponibles para adopción.
-4. **Registro de Usuarios**
-   - Permitir registro de nuevos usuarios.
+1. **CRUD for Users (Master User)**
+   - Create, list, update, and delete users.
+2. **CRUD for Pets (Master User)**
+   - Create, list, update, and delete pets.
+3. **Access to Pets (Visitor User))**
+   - View the list of pets available for adoption.
+4. **User Registration**
+   - Allow registration of new users.
 
-## Requerimientos No Funcionales
-1. **Usabilidad**
-   - Interfaz intuitiva y fácil de navegar.
-2. **Rendimiento**
-   - Carga rápida de la página.
-3. **Seguridad**
-   - Correcta gestión de permisos entre usuarios.
-4. **Compatibilidad**
-   - Compatible con los navegadores más usados.
-5. **Accesibilidad**
-   - Cumplir con las pautas de accesibilidad web (WCAG).
+## Non-Functional Requirements
+1. **Usability**
+   - Intuitive and easy-to-navigate interface..
+2. **Performance**
+   - Fast page loading.
+3. **Security**
+   - Proper management of permissions between users.
+4. **Compatibility**
+   - Compatible with the most used browsers.
+5. **Accessibility**
+   - Comply with web accessibility guidelines (WCAG).
 
-## Enlaces
-- **[Prototipo del Proyecto: Figma](https://back-pet-projectriwi-production.up.railway.app/api)
-- **Documentación de Endpoints**: [Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
-- **Tablero de Gestión del Proyecto - Frontend**: [PAM Front](https://acanorave.atlassian.net/jira/software/projects/PAM/boards/3)
+## Links
+- **[Project Prototype: Figma](https://back-pet-projectriwi-production.up.railway.app/api)
+- **API Endpoint Documentation**: [Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
+- **Project Management Board - Frontend**: [PAM Front](https://acanorave.atlassian.net/jira/software/projects/PAM/boards/3)
 
-## Informe de trabajo completado Frontend
+## Completed Work Report - Frontend
 ![image](https://github.com/user-attachments/assets/2c482808-8ee0-4861-ac65-009f000c4a03) 
 
-## Diagrama de flujo acumulado Frontend
+## Accumulative Flow Diagram - Frontend
 ![image](https://github.com/user-attachments/assets/2dc1edf6-a2d3-4bb3-ab3e-1e5be455abeb)
 
-- **Tablero de Gestión del Proyecto - Backend**: [PAM Backend](https://acanorave.atlassian.net/jira/software/projects/PAMB/boards/4)
+- **Project Management Board - Backend**: [PAM Backend](https://acanorave.atlassian.net/jira/software/projects/PAMB/boards/4)
 
-## Informe de trabajo completado Backend
+## Completed Work Report Backend
 
 ![image](https://github.com/user-attachments/assets/f5adba6a-cacc-421f-9020-fd83e4ee8f77)
 
-## Diagrama de flujo acumulado Backend
+## Accumulative Flow Diagram Backend
 
 ![image](https://github.com/user-attachments/assets/fdf8f871-ed5d-4eaa-82b8-dc8c5593546d)
 
