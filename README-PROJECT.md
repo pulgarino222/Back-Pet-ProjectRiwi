@@ -99,7 +99,7 @@ Puedes encontrar la documentación completa de los endpoints a través de Swagge
 
 ### Modelos UML de Clases
 
-![image](https://github.com/user-attachments/assets/6156556f-d1a6-485d-abf5-f181d7e3c8ba)
+![image](https://github.com/user-attachments/assets/4cce14da-6dd0-4c98-a628-d6dd700280d5) 
 
 ## Modelo de Arquitectura de Componentes
 
@@ -209,7 +209,7 @@ El uso de MVC es importante ya que permite mantener una clara separación de res
    - Cumplir con las pautas de accesibilidad web (WCAG).
 
 ## Enlaces
-- **Prototipo del Proyecto**: [Figma](https://www.figma.com/design/MyadSASPShT6aJTsZiywbH/PAM?node-id=1669-162202&node-type=canvas)
+- **Prototipo del Proyecto**: [Figma] (https://back-pet-projectriwi-production.up.railway.app/api)
 - **Documentación de Endpoints**: [Swagger](https://back-pet-projectriwi-production.up.railway.app/api)
 - **Tablero de Gestión del Proyecto - Frontend**: [PAM Front](https://acanorave.atlassian.net/jira/software/projects/PAM/boards/3)
 
