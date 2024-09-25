@@ -99,7 +99,7 @@ Puedes encontrar la documentación completa de los endpoints a través de Swagge
 
 ### Modelos UML de Clases
 
-![image](https://github.com/user-attachments/assets/e2df79a7-395a-4d8d-9d11-25757eb00573) 
+![image](https://github.com/user-attachments/assets/e468a569-3439-42a1-8576-9b5423201c83) 
 
 ## Modelo de Arquitectura de Componentes
 
