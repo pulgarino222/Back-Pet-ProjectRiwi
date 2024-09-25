@@ -52,7 +52,7 @@ Si se aprueba el MVP, los próximos pasos incluirán:
 - Gestión de solicitudes de adopción y comunicación con los adoptantes.
 
 ## Logo del Proyecto
-![Logo del Proyecto](URL_LOGO)
+![image](https://github.com/user-attachments/assets/d3abee25-baf5-4660-8047-7f5d5d2d0194)  
 
 ## Slogan
 **"Más que una adopción, es un propósito."**
