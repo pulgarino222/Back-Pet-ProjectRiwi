@@ -8,26 +8,32 @@ import { jwtConfig } from 'src/config/configurationsJwt'
 import { JwtStrategyRols } from './jwt-strategy-roles'
 import { JwtStrategy } from './jwt-strategy'
 
-
-
 @Module({
   imports: [
+    // Configure and load JWT configuration globally
     ConfigModule.forRoot({
       load: [jwtConfig],
       isGlobal: true, 
     }),
+    // Import the UsersModule for user-related functionality
     UsersModule,
+    // Configure JWT module asynchronously
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
+        // Get JWT secret from configuration
         secret: configService.get<string>('secret'),
+        // Get JWT sign options from configuration
         signOptions: configService.get('signOptions'),
       }),
     }),
   ],
-  providers: [AuthService,JwtStrategyRols,JwtStrategy],
+  // Define providers for dependency injection
+  providers: [AuthService, JwtStrategyRols, JwtStrategy],
+  // Define the controller for handling authentication-related requests
   controllers: [AuthController],
+  // Export AuthService to be used in other modules
   exports: [AuthService],
 })
 export class AuthModule {}

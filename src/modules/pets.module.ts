@@ -7,23 +7,23 @@ import { PetMedia } from 'src/entities/petMedia.entity';
 import { PetSpecies } from 'src/entities/petSpecies.entity';
 import { PetsService } from 'src/services/pets.service';
 
+// Define the PetsModule using the @Module decorator
 @Module({
-
     imports: [
-        TypeOrmModule.forFeature([Pet, PetMedia, PetSpecies]) // Import the TypeORM module for the specified entities
+        // Import TypeOrmModule and configure it to use the Pet, PetMedia, and PetSpecies entities
+        TypeOrmModule.forFeature([Pet, PetMedia, PetSpecies])
     ],
     providers: [
-        PetsService, // Service for pet-related operations
-        CloudinaryService // Service for handling Cloudinary operations
+        PetsService,    // Provide the PetsService for dependency injection
+        CloudinaryService  // Provide the CloudinaryService for dependency injection
     ],
     exports: [
-        PetsService, // Export PetsService for use in other modules
-        CloudinaryService // Export CloudinaryService for use in other modules
+        PetsService,    // Export PetsService to make it available for other modules
+        CloudinaryService  // Export CloudinaryService to make it available for other modules
     ],
     controllers: [
-        PetsController // Controller for handling pet-related requests
+        PetsController  // Register the PetsController to handle HTTP requests
     ]
-
-
 })
+// Export the PetsModule class to be used in the main application module
 export class PetsModule {}

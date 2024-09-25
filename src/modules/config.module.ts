@@ -5,11 +5,16 @@ import { ConfigDataBase, jwtConfig } from '../config/barrelconfig';
 @Module({
   imports: [
     NestConfigModule.forRoot({
+      // Load configuration from ConfigDataBase and jwtConfig
       load: [ConfigDataBase, jwtConfig],
-      isGlobal: true, // Make the configuration global
+      // Make the configuration available globally throughout the application
+      isGlobal: true,
     }),
   ],
+  // Provide the ConfigService to be used within this module
   providers: [ConfigService],
-  exports: [ConfigService], // Export the ConfigService for use in other modules
+  // Export the ConfigService so it can be used in other modules
+  exports: [ConfigService],
 })
+// Define the ConfigModule class
 export class ConfigModule {}

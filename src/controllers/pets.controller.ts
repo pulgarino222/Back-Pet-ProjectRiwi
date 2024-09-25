@@ -14,7 +14,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 
-  // Route to get all pets
+  // GET /pets - Retrieve all pets
   @Get()
   @ApiOperation({ summary: 'Get all pets' })
   @ApiResponse({ status: 200, description: 'Pets retrieved successfully', type: [Pet] })
@@ -27,7 +27,7 @@ export class PetsController {
     }
   }
 
-  // Route to get a pet by ID
+  // GET /pets/:id - Retrieve a pet by ID
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Get a pet by ID' })
@@ -42,7 +42,7 @@ export class PetsController {
     }
   }
 
-  // Route to create a new pet
+  // POST /pets/create - Create a new pet
   @UseGuards(JwtAuthGuard)
   @Post('create')
   @UseInterceptors(FileInterceptor('image'))
@@ -64,7 +64,7 @@ export class PetsController {
     }
   }
 
-  // Route to update a pet by ID
+  // PUT /pets/:id - Update a pet by ID
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   @ApiOperation({ summary: 'Update a pet by ID' })
@@ -83,7 +83,7 @@ export class PetsController {
     }
   }
 
-  // Route to delete a pet by ID
+  // DELETE /pets/:id - Delete a pet by ID
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a pet by ID' })
@@ -98,7 +98,7 @@ export class PetsController {
     }
   }
 
-  // Route to find pets by species and estimated size
+  // GET /pets/find-by-species-size - Find pets by species and estimated size
   @Get('find-by-species-size')
   async findBySpeciesAndEstimatedSize(
     @Query() specie: FindBySpeciesDto,

@@ -1,3 +1,4 @@
+// Import necessary decorators and modules from NestJS and Swagger
 import { Controller, Post, Get, Put, Delete, Body, Param, NotFoundException, InternalServerErrorException, UseGuards } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { UpdateUserDto } from '../dto/userDto/update-user.dto';
@@ -6,14 +7,16 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { RolesGuard } from 'src/auth/auth-roles.guard';
 
-@ApiBearerAuth() // Adds support for JWT authentication
-@ApiTags('Users') // Groups routes under "Users" in Swagger 
-@Controller('users')
-@UseGuards(JwtAuthGuard,RolesGuard)
+// Apply Swagger decorators for authentication and grouping
+@ApiBearerAuth() // Adds support for JWT authentication in Swagger
+@ApiTags('Users') // Groups routes under "Users" in Swagger documentation
+@Controller('users') // Define the base route for this controller
+@UseGuards(JwtAuthGuard, RolesGuard) // Apply JWT authentication and role-based guards to all routes
 export class UsersController {
+  // Inject the UsersService into the controller
   constructor(private readonly usersService: UsersService) {}
 
-  // Route to get all users
+  // GET /users - Retrieve all users
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Users retrieved successfully', type: [User] })
@@ -26,7 +29,7 @@ export class UsersController {
     }
   }
 
-  // Route to get a user by ID
+  // GET /users/:id - Retrieve a user by ID
   @Get(':id')
   @ApiOperation({ summary: 'Get a user by ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: String })
@@ -40,7 +43,7 @@ export class UsersController {
     }
   }
 
-  // Route to update a user by ID
+  // PUT /users/:id - Update a user by ID
   @Put(':id')
   @ApiOperation({ summary: 'Update a user by ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: String })
@@ -58,7 +61,7 @@ export class UsersController {
     }
   }
 
-  // Route to delete a user by ID
+  // DELETE /users/:id - Delete a user by ID
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a user by ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: String })
@@ -72,4 +75,3 @@ export class UsersController {
     }
   }
 }
-
